@@ -20,6 +20,18 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Show route for one post
+router.get('/:id', async (req, res) => {
+  try {
+    const onePost = await Post.findById(req.params.id);
+    console.log( onePost );
+    res.status( 200 ).json( onePost );
+  } catch ( err ) {
+    console.log( err );
+    res.status( 400 ).json({ err: err.message });
+  }
+});
+
 // Show route for all posts by single user ==> to add later
 
 // Create Route for one post
