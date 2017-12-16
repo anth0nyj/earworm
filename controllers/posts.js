@@ -35,13 +35,23 @@ router.post('/', async (req, res) => {
 });
 
 // Update route for posts
+// router.put( '/:id', async (req, res) => {
+//   try {
+//     const updatePost = await Post.findByIdAndUpdate( req.params.id, req.body );
+//     console.log(updatePost);
+//     res.status( 200 ).json( updatePost );
+//   } catch ( err ) {
+//     console.log( err );
+//     res.status( 400 ).json({ err: err.message });
+//   }
+// });
 
 // Delete route for one post
 // Need to add authentication permissions later
-router.get('/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
-    const deletedPost = await Post.findByIdAndRemove(req.params.id);
-    res.status( 200 ).json( deletedPost );
+    const deletePost = await Post.findByIdAndRemove(req.params.id);
+    res.status( 200 ).json( deletePost );
   } catch (err) {
     console.log( err );
     res.status( 400 ).json({ err: err.message });
