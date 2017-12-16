@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="EarwormApp">
   <head>
     <meta charset="utf-8">
-    <title>EarWorm</title>
+    <title>Earworm</title>
     <link rel="stylesheet" href="./css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,400i,700,700i" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js" charset="utf-8"></script>
+    <script src="/js/modals.js" charset="utf-8"></script>
+    <base href="/" target="_blank">
+
   </head>
   <body>
 
@@ -12,12 +18,13 @@
       <div class="header">
         <div class="header_content">
           <div class="header_left">
-          EARWORM
+          <a class="logo" href="/">earworm</a>
           </div>
           <div class="header_right">
           <input class="search" type="text" placeholder="SEARCH" ng-model="searchBox">
-          <a href="#">LOG IN</a>
-          <a class="join" href="#">JOIN</a>
+          Hi, {{ ctrl.user.username }} !
+          <a href="/login">LOG IN</a>
+          <a class="join" href="/register">JOIN</a>
           </div>
 
         </div>
@@ -25,6 +32,10 @@
 
       <div class="banner">
         <h1>what song's in your head?</h1>
+
+        <div ng-view class="sessions-modal">
+        </div>
+
       </div>
 
       <div class="main_content">
