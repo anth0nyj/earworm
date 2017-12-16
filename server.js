@@ -22,6 +22,7 @@ mongoose.Promise = global.Promise;
 // Controllers
 const sessionsController  = require('./controllers/sessions');
 const usersController     = require('./controllers/users');
+const postsController     = require('./controllers/posts');
 
 // Middleware
 app.use(express.urlencoded({extended: false}));
@@ -37,6 +38,7 @@ app.use(session({
 }));
 app.use('/users', usersController);
 app.use('/session', sessionsController);
+app.use('/posts', postsController);
 
 // Listener
 app.listen(PORT, () => {
