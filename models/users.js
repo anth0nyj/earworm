@@ -4,8 +4,9 @@ const bcrypt = require('bcrypt');
 
 // User Schema
 const userSchema = new mongoose.Schema({
-  username: {type: String, required: true},
-  password: {type: String, required: true}
+  username: {type: String, unique: true, required: true},
+  // Password minlength set to 1 for testing purposes. Increase to 6(?) when deploying.
+  password: {type: String, minlength: 1, required: true}
 });
 
 // Model Document Middleware

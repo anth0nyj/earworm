@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
   res.status(200).json({users});
 });
 
-// One User
+// Logged In User
 router.get('/:id', async (req, res) => {
   try {
     const user = await User.findById(req.session.user.id);

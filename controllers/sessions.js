@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
-const User = require('./users');
+const User = require('../models/users.js');
 
 // Routes
 
