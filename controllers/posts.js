@@ -13,7 +13,7 @@ const User        = require('../models/users.js');
 router.get('/', async (req, res) => {
   try {
     const allPosts = await Post.find();
-    res.status( 200 ).json(info);
+    res.status( 200 ).json( allPosts );
   } catch ( err ) {
     console.log( err );
     res.status( 400 ).json({ err: err.message });
@@ -24,24 +24,24 @@ router.get('/', async (req, res) => {
 
 // Create Route for one post
 // Need to add authentication permissions later
-router.get('/', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
-    const Post = await Post.create(req.body);
-    res.status( 200 ).json( info );
+    const newPost = await Post.create(req.body);
+    res.status( 200 ).json( newPost );
   } catch ( err ) {
     console.log( err );
     res.status( 400 ).json({ err: err.message });
   }
 });
 
-// Update route for posts 
+// Update route for posts
 
 // Delete route for one post
 // Need to add authentication permissions later
 router.get('/:id', async (req, res) => {
   try {
-    const Post = await Post.findByIdAndRemove(req.params.id);
-    res.status( 200 ).json( info );
+    const deletedPost = await Post.findByIdAndRemove(req.params.id);
+    res.status( 200 ).json( deletedPost );
   } catch (err) {
     console.log( err );
     res.status( 400 ).json({ err: err.message });
