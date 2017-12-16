@@ -1,0 +1,158 @@
+body {
+  background: #444;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  height: 3.5em;
+  background: #1c1c1c;
+  color: #f2f2f2;
+  box-sizing: border-box;
+}
+
+.header_content {
+    margin: auto;
+    width: 75%;
+    height: 3.5em;
+    display: flex;
+    /*justify-content: flex-end;*/
+    align-items: center;
+}
+
+.header a {
+  color: #f2f2f2;
+}
+
+.header_left {
+  width: 25%;
+  text-align: left;
+}
+
+.header_right {
+  width: 75%;
+  text-align: right;
+}
+
+input.search {
+  margin: 0 2em;
+  width: 15em;
+  height: 2em;
+  background-color: #f2f2f2;
+  background-image: url('https://visualpharm.com/assets/366/Search-595b40b85ba036ed117de1e9.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
+}
+
+a.join {
+  background: #f2f2f2;
+  color: #1c1c1c;
+  padding: .3em .5em;
+  border-radius: .2em;
+  margin-left: 1em;
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 10em;
+  color: #f2f2f2;
+  background: url('https://static.vecteezy.com/system/resources/previews/000/044/834/non_2x/vector-wavy-blue-lines-background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position-y: -15em;
+}
+
+.banner h1 {
+  color: #f2f2f2;
+  font-family: arial;
+  font-weight: 100;
+  letter-spacing: 3px;
+  text-shadow: 0px 0px 3px #000;
+}
+
+.main_content {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 75%;
+}
+
+.all_posts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 3em;
+  margin: auto;
+}
+
+.blog_posts {
+  width: 14em;
+  height: 14em;
+  background: #666;
+  margin: 1em 0;
+}
+
+.embeded_song {
+  height: 25%;
+  width: 100%;
+}
+
+.post_content {
+  height: 25%;
+  width: 100%;
+  background: #727272;
+  overflow: hidden;
+  padding-left: 1.5em;
+  box-sizing: border-box;
+  line-height: 1.5em;
+}
+
+.post_tags {
+  height: 50%;
+  width: 100%;
+  margin-top: .5em;
+  text-align: center;
+}
+
+button.post_tag {
+  border-radius: 10px;
+  width: 4em;
+  height: 1.8em;
+  margin: .3em;
+  background: #838383;
+  border: 1px solid #969696;
+  border-radius: 20px;
+  color: #dbdbdb;
+  font-size: 20px;
+}
+
+button.post_tag:hover {
+  background: #898989;
+  border: 1px solid #a0a0a0;
+  color: #c4c4c4;
+}
+
+.footer {
+  flex-shrink: 0;
+  width: 100%;
+  height: 3em;
+  background: #1c1c1c;
+  text-align: center;
+}
