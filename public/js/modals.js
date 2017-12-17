@@ -1,26 +1,24 @@
-// const app = angular.module('EarwormApp', ['ngRoute']);
-//
-// app.controller('LoginController', function() {
-// })
-//
-// app.controller('RegisterController', function() {
-// })
-//
-// app.config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider) {
-//   //enables push state
-//   $locationProvider.html5Mode({ enabled: true });
-//
-// //ROUTES
-// $routeProvider.when('/login', {
-//   templateUrl: '../partials/login.html',
-//   controller: 'LoginController',
-//   controllerAs: 'ctrl'
-// });
-//
-// $routeProvider.when('/register', {
-//   templateUrl: '../partials/register.html',
-//   controller: 'RegisterController',
-//   controllerAs: 'ctrl'
-// });
-//
-// }]);
+$( () => {
+
+  const $loginModal = $('.login-modal');
+  const $login = $('.login');
+  const $registerModal = $('.register-modal');
+  const $register = $('.register');
+  const $closeModal = $('.close-modal');
+
+  const loginModal = () => {
+    $loginModal.css('display', 'block');
+  }
+  const registerModal = () => {
+    $registerModal.css('display', 'block');
+  }
+  const closeBox = () => {
+  $loginModal.css('display', 'none');
+  $registerModal.css('display', 'none');
+}
+
+  $login.on('click', loginModal);
+  $register.on('click', registerModal);
+  $closeModal.on('click', closeBox);
+
+});

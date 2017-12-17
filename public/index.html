@@ -7,6 +7,10 @@
     <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,400i,700,700i" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js" charset="utf-8"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
     <script src="/js/app.js" charset="utf-8"></script>
     <script src="/js/modals.js" charset="utf-8"></script>
     <base href="/" target="_blank">
@@ -24,36 +28,42 @@
           <div class="header_right">
           <input class="search" type="text" placeholder="SEARCH" ng-model="searchBox">
           Hi, {{ ctrl.user.username }} !
-          <a href="/login">LOG IN</a>
-          <a class="join" href="/register">JOIN</a>
+          <a class="login" href="#">LOG IN</a>
+          <a class="register join" href="#">JOIN</a>
+          <div ng-if='ctrl.user'>
           <form ng-submit="ctrl.logout()">
             <input type="submit" value="Logout">
           </form>
           </div>
-
+          </div>
         </div>
       </div>
 
-      <label for="">Login: </label>
-      <form ng-submit='ctrl.loginUser()'>
-        <input type="text" placeholder="username" ng-model="ctrl.loginForm.username" />
-        <input type="password" placeholder="password" ng-model="ctrl.loginForm.password" />
-        <input type="submit" />
-      </form>
-      
-      <label for="">Register: </label>
-      <form ng-submit='ctrl.registerUser()'>
-        <input type="text" placeholder="username" ng-model="ctrl.newUserForm.username" />
-        <input type="password" placeholder="password" ng-model="ctrl.newUserForm.password" />
-        <input type="submit" />
-      </form>
-
       <div class="banner">
-        <h1>what song's in your head?</h1>
-
-        <div ng-view class="sessions-modal">
+        <div class="login-modal">
+          <div class="login-box">
+            Login:<br>
+            <form ng-submit='ctrl.loginUser()'>
+              <input type="text" placeholder="username" ng-model="ctrl.loginForm.username" />
+              <input type="password" placeholder="password" ng-model="ctrl.loginForm.password" />
+              <input type="submit" />
+              <a class="close-modal" href="#">x</a>
+            </form>
+          </div>
         </div>
 
+        <div class="register-modal">
+          <div class="register-box">
+              Register:<br>
+              <form ng-submit='ctrl.registerUser()'>
+                <input type="text" placeholder="username" ng-model="ctrl.newUserForm.username" />
+                <input type="password" placeholder="password" ng-model="ctrl.newUserForm.password" />
+                <input type="submit" />
+                <a class="close-modal" href="#">x</a>
+              </form>
+          </div>
+        </div>
+        <h1>what song's in your head?</h1>
       </div>
 
       <div class="main_content">
