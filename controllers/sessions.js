@@ -12,6 +12,7 @@ router.post('/login', async (req, res) => {
     const user = await User.findOne({username: req.body.username});
     if (user.authenticate(req.body.password)) {
       req.session.user = user;
+      console.log("Successful login via sessions controller");
       res.status(200).json({user}); // Successful login
     } else {
       res.status(403).json({err: "Forbidden"}); // Wrong password

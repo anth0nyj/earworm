@@ -38,8 +38,15 @@ router.get('/:id', async (req, res) => {
 // Need to add authentication permissions later
 router.post('/', async (req, res) => {
   try {
+    console.log("Router.post try triggered");
+    console.log("req.body: ", req.body);
+    req.body.tag = req.body.tag.split(', ');
+    console.log("Tag split from router.post");
+    const user = await User.findById(req.body.user);
+    console.log("User:", user);
     const newPost = await Post.create(req.body);
-    res.status( 200 ).json( newPost );
+    console.log("newPost: ", newPost);
+    res.status(200).json({newPost, user});
   } catch ( err ) {
     console.log( err );
     res.status( 400 ).json({ err: err.message });

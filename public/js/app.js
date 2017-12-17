@@ -1,6 +1,22 @@
 const app = angular.module('EarwormApp', ['ngRoute']);
 
 app.controller('MainController', ['$http', function($http) {
+  this.allPosts = [];
+  this.post = {};
+
+  this.getAllPosts = () => {
+    $http({
+      url: "/posts", method: "get"
+    }).then(response => {
+      this.allPosts = response.data;
+    }, ex => {
+      console.error(ex.data.err);
+      this.error = ex.statusText;
+    }).catch(err => this.error = "Server broke?");
+  };
+
+  this.getAllPosts();
+
   // auth functions
   this.registerUser = () => {
     $http({
@@ -22,7 +38,8 @@ app.controller('MainController', ['$http', function($http) {
     data: this.loginForm })
         .then(response =>  {
           console.log('Log in successful!');
-          this.user = response.data
+          this.user = response.data.user;
+          console.log(this.user);
         }, ex => {
           console.log(ex.data.err);
           this.error = ex.statusText;
@@ -42,4 +59,22 @@ app.controller('MainController', ['$http', function($http) {
       this.error = ex.statusText;
     }).catch(err => this.error = "Server broke?");
   };
+
+  this.processForm = () => {
+    $http({
+      url: '/posts',
+      method: 'post',
+      data: this.formData
+    }).then(response => {
+      console.log("Form Data (Then): ", this.formData);
+      console.log("New post successful!");
+      this.posts.push(response.data);
+      this.getAllPosts();
+      this.formData = null;
+    }, ex => {
+      console.error(ex.data.err);
+      console.log("Form Data (Ex): ", this.formData);
+      this.error = ex.statusText;
+    }).catch(err => this.error = "Server broke?");
+  }
 }]);
