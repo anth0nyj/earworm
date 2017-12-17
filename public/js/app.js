@@ -1,24 +1,45 @@
-// auth functions
-this.registerUser = () => {
-  $http({ url: '/users', method: 'post', data: this.newUserForm })
-   .then(response => {
-     console.log('Register successful!');
-     this.user = response.data;
-   }, ex => {
-     console.log(ex.data.err);
-     this.error = ex.statusText;
-   })
-   .catch(err => this.error = 'Server broke?' );
-};
+const app = angular.module('EarwormApp', ['ngRoute']);
 
-this.loginUser = () => {
-  $http({ url: '/sessions/login', method: 'post', data: this.loginForm })
-      .then(response =>  {
-        console.log('Log in successful!');
-        this.user = response.data
-      }, ex => {
-        console.log(ex.data.err);
-        this.error = ex.statusText;
-      })
-      .catch(err => this.error = 'Server broke?' );
-};
+app.controller('MainController', ['$http', function($http) {
+  // auth functions
+  this.registerUser = () => {
+    $http({
+      url: '/users', method: 'POST', data: this.newUserForm })
+     .then(response => {
+       console.log('Register successful!');
+       this.user = response.data;
+     }, ex => {
+       console.log(ex.data.err);
+       this.error = ex.statusText;
+     })
+     .catch(err => this.error = 'Server broke?' );
+  };
+
+  this.loginUser = () => {
+    $http({
+    url: '/session/login',
+    method: 'post',
+    data: this.loginForm })
+        .then(response =>  {
+          console.log('Log in successful!');
+          this.user = response.data
+        }, ex => {
+          console.log(ex.data.err);
+          this.error = ex.statusText;
+        })
+        .catch(err => this.error = 'Server broke?' );
+  };
+
+  this.logout = () => {
+    $http({
+      url: '/session/logout',
+      method: "delete"
+    }).then(response => {
+      console.log("Logout successful");
+      this.user = {};
+    }, ex => {
+      console.error(ex.data.err);
+      this.error = ex.statusText;
+    }).catch(err => this.error = "Server broke?");
+  };
+}]);
