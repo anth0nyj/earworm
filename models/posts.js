@@ -4,7 +4,7 @@ const postSchema   = mongoose.Schema({
   artist: { type: String, require: true },
   songTitle: { type: String, require: true },
   url: { type: String, require: true },
-  tag: { type: String },
+  tag: [{ type: String }],
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 });
 
