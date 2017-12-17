@@ -2,8 +2,21 @@ const app = angular.module('EarwormApp', ['ngRoute']);
 
 app.controller('MainController', ['$http', function($http) {
   this.user = {};
-  this.posts = [];
+  this.allPosts = [];
   this.post = {};
+
+  this.getAllPosts = () => {
+    $http({
+      url: "/posts", method: "get"
+    }).then(response => {
+      this.allPosts = response.data;
+    }, ex => {
+      console.error(ex.data.err);
+      this.error = ex.statusText;
+    }).catch(err => this.error = "Server broke?");
+  };
+
+  this.getAllPosts();
 
   // auth functions
   this.registerUser = () => {
@@ -55,6 +68,7 @@ app.controller('MainController', ['$http', function($http) {
     }).then(response => {
       console.log("New post successful!");
       this.posts.push(response.data);
+      this.getAllPosts();
     }, ex => {
       console.error(ex.data.err);
       this.error = ex.statusText;
