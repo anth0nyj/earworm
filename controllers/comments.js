@@ -11,22 +11,23 @@ const User        = require('../models/users.js');
 // Index (for JSON and testing purposes)
 router.get('/', async ( req, res ) => {
   try {
-    const allComments = await Comment.find().populate('post');
+    const allComments = await Comment.find().populate('post').populate('user');
     res.status( 200 ).json( allComments);
-  } catch ( err )
+  } catch ( err ) {
     console.log( err );
     res.status( 400 ).json({ err: err.message });
+  }
 });
 
 // Create comment
 router.post('/', async (req, res) => {
   try {
     const createdComment = await Comment.create( req.body );
-    // need to figure out how/if to attach userAuthor here 
+    // need to figure out how/if to attach userAuthor here
     res.status( 200 ).json( createdComment );
   } catch ( err ) {
     console.log( err );
-    res.status( 400 ).json( err: err.message );
+    res.status( 400 ).json({ err: err.message });
   }
 });
 
