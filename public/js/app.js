@@ -1,7 +1,6 @@
 const app = angular.module('EarwormApp', ['ngRoute']);
 
 app.controller('MainController', ['$http', function($http) {
-  this.user = {};
   this.allPosts = [];
   this.post = {};
 
@@ -67,12 +66,14 @@ app.controller('MainController', ['$http', function($http) {
       method: 'post',
       data: this.formData
     }).then(response => {
+      console.log("Form Data (Then): ", this.formData);
       console.log("New post successful!");
       this.posts.push(response.data);
       this.getAllPosts();
       this.formData = null;
     }, ex => {
       console.error(ex.data.err);
+      console.log("Form Data (Ex): ", this.formData);
       this.error = ex.statusText;
     }).catch(err => this.error = "Server broke?");
   }
