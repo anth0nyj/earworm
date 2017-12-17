@@ -35,9 +35,7 @@ router.post('/', async (req, res) => {
 router.get('/:id', async( req, res ) => {
   try {
     const oneComment = await Comment.findById( req.params.id ).populate('post').populate('user');
-    // const userAuthor = await User.findById( oneComment.user );
     console.log( 'The comment is: ', oneComment );
-    // console.log( 'The user is: ', userAuthor );
     res.status( 200 ).json( oneComment );
   } catch ( err ) {
     console.log( err );
