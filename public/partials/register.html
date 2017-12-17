@@ -1,0 +1,8 @@
+Register <a href="/">x</a>
+Hi, {{ ctrl.user.username }} !
+
+<form ng-submit='ctrl.registerUser()'>
+  <input type="text" placeholder="username" ng-model="ctrl.newUserForm.username" />
+  <input type="password" placeholder="password" ng-model="ctrl.newUserForm.password" />
+  <input type="submit" />
+</form>
