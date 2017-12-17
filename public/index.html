@@ -89,12 +89,8 @@
               submitted by: {{ctrl.user.username}}<br>
               Optional Text Box?
             </div>
-            <div class="post_tags">
-              <button class="post_tag">#tag</button>
-              <button class="post_tag">#tag</button>
-              <button class="post_tag">#tag</button>
-              <button class="post_tag">#tag</button>
-
+            <div class="post_tags" ng-repeat="tag in post.tag">
+              <button class="post_tag">#{{tag}}</button>
             </div>
           </div>
           <!-- <div class="blog_posts"></div>

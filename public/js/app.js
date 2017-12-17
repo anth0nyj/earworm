@@ -39,7 +39,8 @@ app.controller('MainController', ['$http', function($http) {
     data: this.loginForm })
         .then(response =>  {
           console.log('Log in successful!');
-          this.user = response.data
+          this.user = response.data.user;
+          console.log(this.user);
         }, ex => {
           console.log(ex.data.err);
           this.error = ex.statusText;
@@ -69,6 +70,7 @@ app.controller('MainController', ['$http', function($http) {
       console.log("New post successful!");
       this.posts.push(response.data);
       this.getAllPosts();
+      this.formData = null;
     }, ex => {
       console.error(ex.data.err);
       this.error = ex.statusText;
