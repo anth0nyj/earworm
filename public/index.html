@@ -68,16 +68,25 @@
 
       <div class="main_content">
 
-        <div class="filter_menu">
+        <div class="post_menu">
+          <form ng-submit="ctrl.processForm()">
+            <input type="text" placeholder="Artist" ng-model="ctrl.formData.artist" />
+            <input type="text" placeholder="Song Title" ng-model="ctrl.formData.songTitle" />
+            <input type="text" placeholder="URL" ng-model="ctrl.formData.url" />
+            <input type="text" placeholder="Tag" ng-model="ctrl.formData.tag" />
+            <input type="hidden" name="user" value="ctrl.user.username"/>
+            <input type="submit">
+          </form>
         </div>
 
-        <div class="all_posts">
+        <div class="all_posts" ng-repeat="post in ctrl.allPosts">
           <div class="blog_posts">
             <div class="embeded_song">
-              SONG NAME or EMBEDED
+              {{ post.artist }} - {{ post.songTitle }}
+              <p>{{ post.url }}</p>
             </div>
             <div class="post_content">
-              submitted by: user<br>
+              submitted by: {{ctrl.user.username}}<br>
               Optional Text Box?
             </div>
             <div class="post_tags">
