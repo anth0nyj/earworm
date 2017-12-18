@@ -2,7 +2,10 @@
 const express = require('express');
 const router = express.Router();
 
-const User = require('../models/users');
+// Models
+const Post        = require('../models/posts.js');
+const Comment     = require('../models/comments.js');
+const User        = require('../models/users.js');
 
 // Routes
 
@@ -17,6 +20,19 @@ router.get('/:id', async (req, res) => {
   try {
     const user = await User.findById(req.session.user.id);
     res.status(200).json({user});
+  } catch (err) {
+    res.status(400).json({err: err.message});
+  }
+});
+
+// User profile, with all posts
+router.get('/posts/:id', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    console.log(user);
+    const allPostsByOneUser = await Post.find({ user: user });
+    console.log(allPostsByOneUser);
+    res.status(200).json({user, allPostsByOneUser});
   } catch (err) {
     res.status(400).json({err: err.message});
   }
