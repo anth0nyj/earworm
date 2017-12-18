@@ -77,4 +77,18 @@ app.controller('MainController', ['$http', function($http) {
       this.error = ex.statusText;
     }).catch(err => this.error = "Server broke?");
   }
+
+  this.deletePost = (postToDelete) => {
+    $http({
+      url: "/posts/" + postToDelete._id,
+      method: "delete",
+    }).then(response => {
+      console.log("Post deleted");
+      const postIndex = this.posts.findIndex(post => post._id === postToDelete._id);
+      this.posts.splice(postIndex, 1);
+    }, ex => {
+      console.error(ex.data.err);
+      this.error = ex.statusText;
+    }).catch(err => this.error = "Server broke?");
+  }
 }]);
