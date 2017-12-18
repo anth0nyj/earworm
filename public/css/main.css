@@ -7,6 +7,10 @@ a {
   text-decoration: none;
 }
 
+input {
+  outline: none;
+}
+
 .container {
   display: flex;
   flex: 1 0 auto;
@@ -43,6 +47,7 @@ a {
 .header_right {
   width: 75%;
   text-align: right;
+  font-family: helvetica;
 }
 
 a.logo {
@@ -67,6 +72,7 @@ a.join {
   padding: .3em .5em;
   border-radius: .2em;
   margin-left: 1em;
+  font-family: helvetica;
 }
 
 .banner {
@@ -81,6 +87,7 @@ a.join {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position-y: -15em;
+  margin-bottom: 1em;
 }
 
 .banner h1 {
@@ -98,6 +105,28 @@ a.join {
   flex-direction: column;
   margin: 0 auto;
   width: 75%;
+  z-index: -1;
+}
+
+.post_menu {
+  display: none;
+  width: 30%;
+  height: 10em;
+  background: #f2f2f2;
+  margin-left: 35%;
+  margin-top: 16.4em;
+  z-index: 99;
+  position: absolute;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+
+}
+
+.post_bar {
+  min-width: 30%;
+  text-align: center;
+  background: #f2f2f2;
+  margin: auto;
 }
 
 .all_posts {
@@ -105,25 +134,30 @@ a.join {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
   margin-top: 3em;
   margin: auto;
+  justify-content: center;
 }
 
-.blog_posts {
-  width: 14em;
-  height: 14em;
+.one_post {
+  width: 20em;
+  height: 10em;
   background: #666;
-  margin: 1em 0;
+  margin: 1em 2.5em;
+  border-radius: 5px;
 }
 
-.embeded_song {
-  height: 25%;
+.embedded_song {
+  height: 30%;
   width: 100%;
+  font-size: 1em;
+  font-family: helvetica;
+  text-align: center;
+  padding-top: .6em;
 }
 
 .post_content {
-  height: 25%;
+  height: 30%;
   width: 100%;
   background: #727272;
   overflow: hidden;
@@ -133,7 +167,7 @@ a.join {
 }
 
 .post_tags {
-  height: 50%;
+  height: 40%;
   width: 100%;
   margin-top: .5em;
   text-align: center;
