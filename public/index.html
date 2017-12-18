@@ -79,36 +79,26 @@
           </form>
         </div>
 
-        <div class="all_posts" ng-repeat="post in ctrl.allPosts">
-          <div class="blog_posts">
-            <div class="embedded_song">
-              {{ post.artist }} - {{ post.songTitle }}
-              <p>{{ post.url }}</p>
+        <div class="all_posts">
+          <div ng-repeat="post in ctrl.allPosts">
+            <div class="blog_posts">
+              <div class="embedded_song">
+                {{ post.artist }} - {{ post.songTitle }}
+                <p>{{ post.url }}</p>
+              </div>
+              <div class="post_content">
+                submitted by: {{post.user.username}}<br>
+                Optional Text Box?
+              </div>
+              <div class="post_tags" ng-repeat="tag in post.tag">
+                <button class="post_tag">#{{tag}}</button>
+              </div>
+              <form ng-submit="ctrl.deletePost(post)">
+                <input type="submit" value="Delete">
+              </form>
             </div>
-            <div class="post_content">
-              submitted by: {{post.user}}<br>
-              Optional Text Box?
-            </div>
-            <div class="post_tags" ng-repeat="tag in post.tag">
-              <button class="post_tag">#{{tag}}</button>
-            </div>
-            <form ng-submit="ctrl.deletePost(post)">
-              <input type="submit" value="Delete">
-            </form>
           </div>
-          <!-- <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div> -->
         </div>
-
       </div>
     </div>
 
