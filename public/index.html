@@ -1,76 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="EarwormApp">
   <head>
     <meta charset="utf-8">
-    <title>EarWorm</title>
+    <title>Earworm</title>
     <link rel="stylesheet" href="./css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,400i,700,700i" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js" charset="utf-8"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    <script src="/js/app.js" charset="utf-8"></script>
+    <script src="/js/modals.js" charset="utf-8"></script>
+    <base href="/" target="_blank">
+
   </head>
-  <body>
+  <body ng-controller='MainController as ctrl'>
 
     <div class="container">
 
       <div class="header">
         <div class="header_content">
           <div class="header_left">
-          EARWORM
+          <a class="logo" href="/">earworm</a>
           </div>
           <div class="header_right">
           <input class="search" type="text" placeholder="SEARCH" ng-model="searchBox">
-          <a href="#">LOG IN</a>
-          <a class="join" href="#">JOIN</a>
+          Hi, {{ ctrl.user.username }} !
+          <a class="login" href="#">LOG IN</a>
+          <a class="register join" href="#">JOIN</a>
+          <div ng-if='ctrl.user'>
+          <form ng-submit="ctrl.logout()">
+            <input type="submit" value="Logout">
+          </form>
           </div>
-
+          </div>
         </div>
       </div>
 
       <div class="banner">
+        <div class="login-modal">
+          <div class="login-box">
+            Login:<br>
+            <form ng-submit='ctrl.loginUser()'>
+              <input type="text" placeholder="username" ng-model="ctrl.loginForm.username" />
+              <input type="password" placeholder="password" ng-model="ctrl.loginForm.password" />
+              <input type="submit" />
+              <a class="close-modal" href="#">x</a>
+            </form>
+          </div>
+        </div>
+
+        <div class="register-modal">
+          <div class="register-box">
+              Register:<br>
+              <form ng-submit='ctrl.registerUser()'>
+                <input type="text" placeholder="username" ng-model="ctrl.newUserForm.username" />
+                <input type="password" placeholder="password" ng-model="ctrl.newUserForm.password" />
+                <input type="submit" />
+                <a class="close-modal" href="#">x</a>
+              </form>
+          </div>
+        </div>
         <h1>what song's in your head?</h1>
       </div>
 
       <div class="main_content">
 
-        <div class="filter_menu">
+        <div class="post_menu">
+          <form ng-submit="ctrl.processForm()">
+            <input type="text" placeholder="Artist" ng-model="ctrl.formData.artist" />
+            <input type="text" placeholder="Song Title" ng-model="ctrl.formData.songTitle" />
+            <input type="text" placeholder="URL" ng-model="ctrl.formData.url" />
+            <input type="text" placeholder="Tag" ng-model="ctrl.formData.tag" />
+            <input type="text" ng-model="ctrl.formData.user" value='ObjectId("5a36c94dfce8292cafffb38d")' />
+            <input type="submit">
+          </form>
         </div>
 
-        <div class="all_posts">
+        <div class="all_posts" ng-repeat="post in ctrl.allPosts">
           <div class="blog_posts">
-            <div class="embeded_song">
-              SONG NAME or EMBEDED
+            <div class="embedded_song">
+              {{ post.artist }} - {{ post.songTitle }}
+              <p>{{ post.url }}</p>
             </div>
             <div class="post_content">
-              submitted by: user<br>
+              submitted by: {{post.user}}<br>
               Optional Text Box?
             </div>
-            <div class="post_tags">
-              <button class="post_tag">#tag</button>
-              <button class="post_tag">#tag</button>
-              <button class="post_tag">#tag</button>
-              <button class="post_tag">#tag</button>
-
+            <div class="post_tags" ng-repeat="tag in post.tag">
+              <button class="post_tag">#{{tag}}</button>
             </div>
+            <form ng-submit="ctrl.deletePost(post)">
+              <input type="submit" value="Delete">
+            </form>
           </div>
-          <div class="blog_posts">
-          </div>
-          <div class="blog_posts">
-          </div>
-          <div class="blog_posts">
-          </div>
-          <div class="blog_posts">
-          </div>
-          <div class="blog_posts">
-          </div>
-            <div class="blog_posts">
-            </div>
-            <div class="blog_posts">
-            </div>
-            <div class="blog_posts">
-            </div>
-            <div class="blog_posts">
-            </div>
-            <div class="blog_posts">
-            </div>
-            <div class="blog_posts">
-          </div>
+          <!-- <div class="blog_posts"></div>
+          <div class="blog_posts"></div>
+          <div class="blog_posts"></div>
+          <div class="blog_posts"></div>
+          <div class="blog_posts"></div>
+          <div class="blog_posts"></div>
+          <div class="blog_posts"></div>
+          <div class="blog_posts"></div>
+          <div class="blog_posts"></div>
+          <div class="blog_posts"></div>
+          <div class="blog_posts"></div> -->
         </div>
 
       </div>
