@@ -92,6 +92,9 @@
             <div class="post_tags" ng-repeat="tag in post.tag">
               <button class="post_tag">#{{tag}}</button>
             </div>
+            <form ng-submit="ctrl.deletePost(post)">
+              <input type="submit" value="Delete">
+            </form>
           </div>
           <!-- <div class="blog_posts"></div>
           <div class="blog_posts"></div>

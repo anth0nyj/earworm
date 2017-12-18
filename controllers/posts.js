@@ -12,7 +12,7 @@ const User        = require('../models/users.js');
 // Index Route for all posts
 router.get('/', async (req, res) => {
   try {
-    const allPosts = await Post.find();
+    const allPosts = await Post.find().populate('user');;
     res.status( 200 ).json( allPosts );
   } catch ( err ) {
     console.log( err );
