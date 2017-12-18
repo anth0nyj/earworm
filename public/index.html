@@ -86,7 +86,7 @@
               <p>{{ post.url }}</p>
             </div>
             <div class="post_content">
-              submitted by: {{post.user}}<br>
+              submitted by: {{post.user.username}}<br>
               Optional Text Box?
             </div>
             <div class="post_tags" ng-repeat="tag in post.tag">
