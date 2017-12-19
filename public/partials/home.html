@@ -2,7 +2,8 @@
   <div class="one_post">
     <div class="embedded_song">
       {{ post.artist }} - {{ post.songTitle }}
-      {{ post.url }}
+      <a href="{{ post.url }}">Listen here</a>
+      Add Comment
     </div>
     <div class="post_content">
       submitted by: {{post.user.username}}
