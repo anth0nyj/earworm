@@ -1,0 +1,61 @@
+<div class="header">
+  <div class="header_content">
+
+    <!-- Logo -->
+    <div class="header_left">
+      <a class="logo" href="/">earworm</a>
+    </div>
+
+    <!-- Auth Buttons/Links -->
+    <div class="header_right">
+      <input class="search" type="text" placeholder="SEARCH" ng-model="searchBox">
+      Hi, {{ ctrl.user.username }} !
+
+      <!-- Login Link -->
+      <a class="login" href="#">LOG IN</a>
+
+      <!-- Register Link -->
+      <a class="register join" href="#">JOIN</a>
+
+      <!-- Logout Button -->
+      <div ng-if='ctrl.user'>
+        <form ng-submit="ctrl.logout()">
+          <input type="submit" value="Logout">
+        </form>
+      </div>
+    </div> <!-- End of Header Right -->
+  </div> <!-- End of header_content -->
+</div> <!-- End of Top Line Header-->
+
+<!-- Banner/Auth Models -->
+<div class="banner">
+
+  <!-- Login Modal -->
+  <div class="login-modal">
+    <div class="login-box">
+      Login:<br>
+      <!-- Login Form -->
+      <form ng-submit='ctrl.loginUser()'>
+        <input type="text" placeholder="username" ng-model="ctrl.loginForm.username" />
+        <input type="password" placeholder="password" ng-model="ctrl.loginForm.password" />
+        <input type="submit" />
+        <a class="close-modal" href="#">x</a>
+      </form>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div class="register-modal">
+    <div class="register-box">
+      Register:<br>
+      <form ng-submit='ctrl.registerUser()'>
+        <input type="text" placeholder="username" ng-model="ctrl.newUserForm.username" />
+        <input type="password" placeholder="password" ng-model="ctrl.newUserForm.password" />
+        <input type="submit" />
+        <a class="close-modal" href="#">x</a>
+      </form>
+    </div>
+  </div>
+  <!-- Banner Text -->
+  <h1>what song's in your head?</h1>
+</div> <!-- End of Banner-->
