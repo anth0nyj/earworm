@@ -17,6 +17,20 @@
       <button class="post_tag">#{{tag}}</button>
     </div>
 
+    <!-- Toggle Edit Form Button -->
+    <form ng-submit="ctrl.showEdit(post)" ng-hide="ctrl.showForm === post._id">
+      <input type="submit" value="Edit">
+    </form>
+
+    <!-- Edit Form -->
+    <form ng-if="ctrl.showForm === post._id" ng-submit="ctrl.editPost(post)">
+      <input type="text" placeholder={{post.artist}} ng-model="ctrl.formData.artist" />
+      <input type="text" placeholder={{post.songTitle}} ng-model="ctrl.formData.songTitle" />
+      <input type="text" placeholder={{post.url}} ng-model="ctrl.formData.url" />
+      <input type="text" placeholder={{post.tag}} ng-model="ctrl.formData.tag" />
+      <input type="submit" value="Submit">
+    </form>
+
     <!-- Delete Button -->
     <form ng-submit="ctrl.deletePost(post)">
       <input type="submit" value="Delete">
