@@ -3,6 +3,7 @@ const app = angular.module('EarwormApp', ['ngRoute']);
 app.controller('MainController', ['$http', function($http) {
   this.allPosts = [];
   this.post = {};
+  this.loggedInUser = {};
 
   // Show Posts Function
   this.getAllPosts = () => {
@@ -44,7 +45,9 @@ app.controller('MainController', ['$http', function($http) {
         .then(response =>  {
           console.log('Log in successful!');
           this.user = response.data.user;
-          console.log(this.user);
+          // console.log(this.user);
+          this.loggedInUser = this.user;
+          // console.log(this.loggedInUser);
         }, ex => {
           console.log(ex.data.err);
           this.error = ex.statusText;
@@ -69,11 +72,18 @@ app.controller('MainController', ['$http', function($http) {
   // Post CRUD Functions
 
   // Create Post
-  this.processForm = () => {
+  this.processForm = (currentUser) => {
+    console.log('The logged in user is: ', currentUser);
     $http({
       url: '/posts',
       method: 'post',
-      data: this.formData
+      data: {
+        artist: this.formData.artist,
+        songTitle: this.formData.songTitle,
+        url: this.formData.url,
+        tag: this.formData.tag,
+        user: currentUser
+      }
     }).then(response => {
       console.log("Form Data (Then): ", this.formData);
       console.log("New post successful!");
