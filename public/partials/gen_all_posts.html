@@ -1,0 +1,26 @@
+<!-- Generate All Posts -->
+<div class="all_posts" ng-repeat="post in ctrl.allPosts">
+  <div class="blog_posts">
+    <div class="embedded_song">
+      {{ post.artist }} - {{ post.songTitle }}
+      <p>{{ post.url }}</p>
+    </div>
+
+    <!-- Submitted By -->
+    <div class="post_content">
+      submitted by: {{post.user.username}}<br>
+      <!-- Optional Text Box? -->
+    </div>
+
+    <!-- Tags -->
+    <div class="post_tags" ng-repeat="tag in post.tag">
+      <button class="post_tag">#{{tag}}</button>
+    </div>
+
+    <!-- Delete Button -->
+    <form ng-submit="ctrl.deletePost(post)">
+      <input type="submit" value="Delete">
+    </form>
+  </div>
+
+</div>
