@@ -95,7 +95,6 @@ app.controller('MainController', ['$http', function($http) {
 }]); //ends
 
 app.config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider) {
-//enables push state
 $locationProvider.html5Mode({ enabled: true });
   $routeProvider.when("/profile", {
       templateUrl: "../partials/profile.html"
