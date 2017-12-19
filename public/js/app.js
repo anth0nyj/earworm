@@ -91,4 +91,19 @@ app.controller('MainController', ['$http', function($http) {
       this.error = ex.statusText;
     }).catch(err => this.error = "Server broke?");
   }
+
+}]); //ends
+
+app.config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider) {
+//enables push state
+$locationProvider.html5Mode({ enabled: true });
+  $routeProvider.when("/profile", {
+      templateUrl: "../partials/profile.html"
+  })
+
+  $routeProvider.when("/", {
+      templateUrl: "../partials/home.html"
+  })
+
+
 }]);

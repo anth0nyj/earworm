@@ -7,6 +7,7 @@ $( () => {
   const $closeModal = $('.close-modal');
   const $postMenu = $('.post_menu');
   const $postBar = $('.post_bar');
+  const $newPost = $('.new_post');
 
   const loginModal = () => {
     $loginModal.css('display', 'block');
@@ -19,21 +20,11 @@ $( () => {
     $registerModal.css('display', 'none');
   }
   const openMenu = () => {
-    let clicks = $(this).data('clicks');
-    if (clicks) {
-    $postMenu.css('display', 'none');
-    } else {
-    $postMenu.css('display', 'flex');
-    }
-$(this).data("clicks", !clicks);
+    $postMenu.slideToggle("slow");
   }
-  // const closeMeu = () => {
-  //   $postMenu.css('display: none');
-  // }
 
   $login.on('click', loginModal);
   $register.on('click', registerModal);
   $closeModal.on('click', closeBox);
-  $postBar.on('click', openMenu);
-
+  $newPost.on('click', openMenu);
 });

@@ -1,0 +1,17 @@
+<div ng-repeat="post in ctrl.allPosts">
+  <div class="one_post">
+    <div class="embedded_song">
+      {{ post.artist }} - {{ post.songTitle }}
+      {{ post.url }}
+    </div>
+    <div class="post_content">
+      submitted by: {{post.user.username}}
+    </div>
+    <div class="post_tags" ng-repeat="tag in post.tag">
+      <button class="post_tag">#{{tag}}</button>
+    </div>
+    <form ng-submit="ctrl.deletePost(post)">
+      <input type="submit" value="Delete">
+    </form>
+  </div>
+</div>
