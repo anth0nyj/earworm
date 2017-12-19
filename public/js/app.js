@@ -123,5 +123,17 @@ app.controller('MainController', ['$http', function($http) {
       console.error(error);
     }).catch(err => console.error("Catch: ", err));
   }
+  }]); //ends
+
+app.config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider) {
+$locationProvider.html5Mode({ enabled: true });
+  $routeProvider.when("/profile", {
+      templateUrl: "../partials/profile.html"
+  })
+
+  $routeProvider.when("/", {
+      templateUrl: "../partials/home.html"
+  })
+
 
 }]);

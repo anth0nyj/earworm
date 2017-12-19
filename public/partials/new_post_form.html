@@ -1,5 +1,15 @@
+<!-- Post Bar -->
+<div class="post_bar">
+  <ul>
+    <li><a href="/profile"<li>PROFILE</li></a>
+    <li class="new_post">NEW &#9776; POST</li>
+    <a href="/users"><li>USERS</li></a>
+  </ul>
+</div>
+
 <!-- New Post Form -->
 <div class="post_menu">
+  <!-- angular does not like being the same div that has flexbox properties! -->
   <form ng-submit="ctrl.processForm()">
     <input type="text" placeholder="Artist" ng-model="ctrl.formData.artist" />
     <input type="text" placeholder="Song Title" ng-model="ctrl.formData.songTitle" />
