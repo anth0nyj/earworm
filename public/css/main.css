@@ -1,5 +1,5 @@
 body {
-  background: #444;
+  background: #eee;
   margin: 0;
 }
 
@@ -7,12 +7,16 @@ a {
   text-decoration: none;
 }
 
+input {
+  outline: none;
+}
+
 .container {
   display: flex;
   flex: 1 0 auto;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  /*height: 100vh;*/
 }
 
 .header {
@@ -27,7 +31,6 @@ a {
     width: 75%;
     height: 3.5em;
     display: flex;
-    /*justify-content: flex-end;*/
     align-items: center;
 }
 
@@ -43,6 +46,7 @@ a {
 .header_right {
   width: 75%;
   text-align: right;
+  font-family: helvetica;
 }
 
 a.logo {
@@ -52,13 +56,15 @@ a.logo {
 
 input.search {
   margin: 0 2em;
-  width: 15em;
+  width: 16em;
   height: 2em;
   background-color: #f2f2f2;
   background-image: url('https://visualpharm.com/assets/366/Search-595b40b85ba036ed117de1e9.svg');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: right;
+  font-family: helvetica;
+  padding-left: 1em;
 }
 
 a.join {
@@ -67,6 +73,7 @@ a.join {
   padding: .3em .5em;
   border-radius: .2em;
   margin-left: 1em;
+  font-family: helvetica;
 }
 
 .banner {
@@ -76,16 +83,17 @@ a.join {
   width: 100%;
   height: 10em;
   color: #f2f2f2;
-  background: url('https://static.vecteezy.com/system/resources/previews/000/044/834/non_2x/vector-wavy-blue-lines-background.jpg');
+  background: url('https://thumbs.dreamstime.com/z/satin-swoosh-lines-flow-blue-pink-waves-certificate-background-vector-illustration-44486283.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position-y: -15em;
+  /*margin-bottom: 1em;*/
 }
 
 .banner h1 {
   color: #f2f2f2;
-  font-size: 20px;
+  font-size: 25px;
   font-family: arial;
   font-weight: 100;
   letter-spacing: 3px;
@@ -97,34 +105,102 @@ a.join {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  width: 75%;
+  width: 100%;
+}
+
+.post_menu {
+  display: none;
+  width: 45em;
+  height: 20em;
+  background: #333;
+  align-self: center;
+  /*z-index: 99;*/
+  /*position: absolute;*/
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  text-align: center;
+}
+
+
+.post_menu input {
+  background: #f8f8f8;
+  width: 10em;
+  height: 2em;
+  text-align: center;
+  font-family: helvetica;
+  font-size: 18px;
+  line-height: 0;
+  margin: 1em;
+
+}
+
+.post_bar {
+  width: 100%;
+  height: 2em;
+  text-align: center;
+  background: #1c1c1c;
+  /*margin: auto;*/
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  display: block;
+  float: left;
+  width:10em;
+  height: 2em;
+  line-height: 2em;
+  color: #f2f2f2;
+  font-family: helvetica;
+}
+
+li a {
+  color: #f2f2f2;
+  font-family: helvetica;
+}
+
+li:hover {
+  background: #222;
 }
 
 .all_posts {
+  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
   margin-top: 3em;
   margin: auto;
+  justify-content: center;
 }
 
-.blog_posts {
-  width: 14em;
-  height: 14em;
-  background: #666;
-  margin: 1em 0;
+.one_post {
+  width: 20em;
+  height: 10em;
+  background: #fff;
+  margin: 1em 2em;
+  /*border-radius: 5px;*/
+  border: 2px solid #e2e2e2;
 }
 
-.embeded_song {
-  height: 25%;
+.embedded_song {
+  height: 30%;
   width: 100%;
+  font-size: 1em;
+  font-family: helvetica;
+  text-align: center;
+  padding-top: .6em;
 }
 
 .post_content {
-  height: 25%;
+  height: 2em;
   width: 100%;
-  background: #727272;
+  background: #f2f2f2;
   overflow: hidden;
   padding-left: 1.5em;
   box-sizing: border-box;
@@ -132,28 +208,27 @@ a.join {
 }
 
 .post_tags {
-  height: 50%;
+  height: 40%;
   width: 100%;
   margin-top: .5em;
   text-align: center;
 }
 
 button.post_tag {
-  border-radius: 10px;
-  width: 4em;
-  height: 1.8em;
+  max-width: 4em;
+  height: 1.7em;
   margin: .3em;
-  background: #838383;
-  border: 1px solid #969696;
-  border-radius: 20px;
-  color: #dbdbdb;
+  background: #d1d1d1;
+  border: none;
+  border-radius: .2em;
+  color: #888;
   font-size: 20px;
+  text-align: center;
 }
 
 button.post_tag:hover {
-  background: #898989;
-  border: 1px solid #a0a0a0;
-  color: #c4c4c4;
+  background: #d6d6d6;
+  color: #9e9e9e;
 }
 
 .footer {
@@ -162,6 +237,13 @@ button.post_tag:hover {
   height: 3em;
   background: #1c1c1c;
   text-align: center;
+}
+
+.profile_cont {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  width: 100%;
 }
 
 /*MODALS*/

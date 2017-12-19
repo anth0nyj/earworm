@@ -23,16 +23,16 @@ router.get('/', async (req, res) => {
 // Show route for one post
 router.get('/:id', async (req, res) => {
   try {
-    const onePost = await Post.findById(req.params.id);
+    const onePost = await Post.findById(req.params.id).populate('user');
     console.log( onePost );
-    res.status( 200 ).json( onePost );
+    const commentsOnOnePost = await Comment.find({post: onePost}).populate('user').populate('post');
+    console.log(commentsOnOnePost);
+    res.status( 200 ).json( {onePost, commentsOnOnePost} );
   } catch ( err ) {
     console.log( err );
     res.status( 400 ).json({ err: err.message });
   }
 });
-
-// Show route for all posts by single user ==> to add later
 
 // Create Route for one post
 // Need to add authentication permissions later
@@ -56,6 +56,7 @@ router.post('/', async (req, res) => {
 // Update route for posts
 router.put( '/:id', async (req, res) => {
   try {
+    req.body.tag = req.body.tag.split(', ');
     const updatePost = await Post.findByIdAndUpdate( req.params.id, req.body );
     console.log(updatePost);
     res.status( 200 ).json( updatePost );
