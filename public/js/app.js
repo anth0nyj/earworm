@@ -145,6 +145,9 @@ $locationProvider.html5Mode({ enabled: true });
       templateUrl: "../partials/home.html"
   })
 
+  $routeProvider.when("/users", {
+    templateUrl: "../partials/users.html"
+  })
 
 }]);
 
