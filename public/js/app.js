@@ -1,14 +1,32 @@
 const app = angular.module('EarwormApp', ['ngRoute']);
 
+app.config(function($sceDelegateProvider) {
+  $sceDelegateProvider.resourceUrlWhitelist([
+    'self',
+    'https://open.spotify.com/'
+  ]);
+});
+
+// app.config(function($sceProvider) {
+//   // Completely disable SCE.  For demonstration purposes only!
+//   // Do not use in new projects or libraries.
+//   $sceProvider.enabled(false);
+// });
+
 app.controller('MainController', ['$http', function($http) {
   this.allPosts = [];
   this.post = {};
+  this.test = false;
 
   this.getAllPosts = () => {
     $http({
       url: "/posts", method: "get"
     }).then(response => {
       this.allPosts = response.data;
+      for (let post of this.allPosts) {
+        post.url = `src="https://open.spotify.com/embed?uri=${post.url}"`;
+      }
+      console.log(this.allPosts);
     }, ex => {
       console.error(ex.data.err);
       this.error = ex.statusText;
@@ -68,6 +86,7 @@ app.controller('MainController', ['$http', function($http) {
     }).then(response => {
       console.log("Form Data (Then): ", this.formData);
       console.log("New post successful!");
+      console.log(this.formData.url);
       this.posts.push(response.data);
       this.getAllPosts();
       this.formData = null;
