@@ -68,7 +68,16 @@
 
       <div class="main_content">
 
+        <div class="post_bar">
+          <ul>
+            <li><a href="/profile"<li>PROFILE</li></a>
+            <li class="new_post">NEW &#9776; POST</li>
+            <a href="/users"><li>USERS</li></a>
+          </ul>
+        </div>
+
         <div class="post_menu">
+          <!-- angular does not like being the same div that has flexbox properties! -->
           <form ng-submit="ctrl.processForm()">
             <input type="text" placeholder="Artist" ng-model="ctrl.formData.artist" />
             <input type="text" placeholder="Song Title" ng-model="ctrl.formData.songTitle" />
@@ -79,34 +88,8 @@
           </form>
         </div>
 
-        <div class="all_posts" ng-repeat="post in ctrl.allPosts">
-          <div class="blog_posts">
-            <div class="embedded_song">
-              {{ post.artist }} - {{ post.songTitle }}
-              <p>{{ post.url }}</p>
-            </div>
-            <div class="post_content">
-              submitted by: {{post.user}}<br>
-              Optional Text Box?
-            </div>
-            <div class="post_tags" ng-repeat="tag in post.tag">
-              <button class="post_tag">#{{tag}}</button>
-            </div>
-            <form ng-submit="ctrl.deletePost(post)">
-              <input type="submit" value="Delete">
-            </form>
-          </div>
-          <!-- <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div> -->
+        <div class="all_posts" ng-view>
+
         </div>
 
       </div>

@@ -6,7 +6,7 @@ const postSchema   = mongoose.Schema({
   songTitle: { type: String, require: true },
   url: { type: String, require: true },
   tag: [{ type: String }],
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false }
   // user: {type: String, required: true}
 });
 
