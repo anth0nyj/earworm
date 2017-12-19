@@ -3,71 +3,35 @@
   <head>
     <meta charset="utf-8">
     <title>Earworm</title>
+
+    <!-- Main CSS -->
     <link rel="stylesheet" href="./css/main.css">
+    <!-- Lobster 2 from Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,400i,700,700i" rel="stylesheet">
+    <!-- Angular CDNs -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js" charset="utf-8"></script>
+    <!-- jQuery CDN -->
     <script
     src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
+    <!-- Local JS Links -->
     <script src="/js/app.js" charset="utf-8"></script>
     <script src="/js/modals.js" charset="utf-8"></script>
     <base href="/" target="_blank">
 
   </head>
+
   <body ng-controller='MainController as ctrl'>
 
     <div class="container">
 
-      <div class="header">
-        <div class="header_content">
-          <div class="header_left">
-          <a class="logo" href="/">earworm</a>
-          </div>
-          <div class="header_right">
-          <input class="search" type="text" placeholder="SEARCH" ng-model="searchBox">
-          Hi, {{ ctrl.user.username }} !
-          <a class="login" href="#">LOG IN</a>
-          <a class="register join" href="#">JOIN</a>
-          <div ng-if='ctrl.user'>
-          <form ng-submit="ctrl.logout()">
-            <input type="submit" value="Logout">
-          </form>
-          </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="banner">
-        <div class="login-modal">
-          <div class="login-box">
-            Login:<br>
-            <form ng-submit='ctrl.loginUser()'>
-              <input type="text" placeholder="username" ng-model="ctrl.loginForm.username" />
-              <input type="password" placeholder="password" ng-model="ctrl.loginForm.password" />
-              <input type="submit" />
-              <a class="close-modal" href="#">x</a>
-            </form>
-          </div>
-        </div>
-
-        <div class="register-modal">
-          <div class="register-box">
-              Register:<br>
-              <form ng-submit='ctrl.registerUser()'>
-                <input type="text" placeholder="username" ng-model="ctrl.newUserForm.username" />
-                <input type="password" placeholder="password" ng-model="ctrl.newUserForm.password" />
-                <input type="submit" />
-                <a class="close-modal" href="#">x</a>
-              </form>
-          </div>
-        </div>
-        <h1>what song's in your head?</h1>
-      </div>
+      <header ng-include="'partials/header.html'"></header>
 
       <div class="main_content">
 
+        <!-- New Post Form -->
         <div class="post_menu">
           <form ng-submit="ctrl.processForm()">
             <input type="text" placeholder="Artist" ng-model="ctrl.formData.artist" />
@@ -79,42 +43,39 @@
           </form>
         </div>
 
+        <!-- Generate All Posts -->
         <div class="all_posts" ng-repeat="post in ctrl.allPosts">
           <div class="blog_posts">
             <div class="embedded_song">
               {{ post.artist }} - {{ post.songTitle }}
               <p>{{ post.url }}</p>
             </div>
+
+            <!-- Submitted By -->
             <div class="post_content">
               submitted by: {{post.user.username}}<br>
-              Optional Text Box?
+              <!-- Optional Text Box? -->
             </div>
+
+            <!-- Tags -->
             <div class="post_tags" ng-repeat="tag in post.tag">
               <button class="post_tag">#{{tag}}</button>
             </div>
+
+            <!-- Delete Button -->
             <form ng-submit="ctrl.deletePost(post)">
               <input type="submit" value="Delete">
             </form>
           </div>
-          <!-- <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div>
-          <div class="blog_posts"></div> -->
+
         </div>
 
       </div>
     </div>
 
-    <div class="footer">
+    <footer class="footer">
       MADE WITH &hearts;
-    </div>
+    </footer>
 
   </body>
 </html>
