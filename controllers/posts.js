@@ -56,6 +56,7 @@ router.post('/', async (req, res) => {
 // Update route for posts
 router.put( '/:id', async (req, res) => {
   try {
+    req.body.tag = req.body.tag.split(', ');
     const updatePost = await Post.findByIdAndUpdate( req.params.id, req.body );
     console.log(updatePost);
     res.status( 200 ).json( updatePost );

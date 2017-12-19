@@ -117,6 +117,7 @@ app.controller('MainController', ['$http', function($http) {
       url: "/posts/" + post._id,
       data: this.formData
     }).then(response => {
+      this.post = response.data;
       this.getAllPosts();
     }, error => {
       console.error(error);
