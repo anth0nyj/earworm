@@ -1,4 +1,4 @@
-<div ng-repeat="post in ctrl.allPosts">
+<div ng-repeat="post in ctrl.allPosts | filter: searchBox">
   <div class="one_post">
     <div class="embedded_song">
       {{ post.artist }} - {{ post.songTitle }}
