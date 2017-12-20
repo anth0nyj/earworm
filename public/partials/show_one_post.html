@@ -1,12 +1,17 @@
-<div class="one-post" ng-hide="ctrl.toggle">
-  <div ng-model="ctrl.showOnePost">
-    <h1> Is this working? </h1>
-    {{ ctrl.showOnePost.artist }}
-    {{ ctrl.showOnePost.songTitle }}
-    {{ ctrl.showOnePost.url }}
-    {{ ctrl.showOnePost.tag }}
-    {{ ctrl.showOnePost.user.username }}
-    {{ ctrl.showOnePost.comments.user.username }}
-    {{ ctrl.showOnePost.comments.content }}
+<div class="one-post" ng-hide="">
+  <div ng-model="ctrl.getOne(post)">
+    
+    {{ ctrl.onePost.artist }}
+    {{ ctrl.onePost.songTitle }}
+    {{ ctrl.onePost.url }}
+    {{ ctrl.onePost.tag }}
+    {{ ctrl.onePost.user.username }}
+
+    <div ng-repeat="comment in ctrl.onePost.comments">
+      {{ comment.content }}
+      {{ comment.user.username }}
+    </div>
+
   </div>
 </div>
+{{ post.artist }}

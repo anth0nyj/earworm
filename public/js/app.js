@@ -7,6 +7,7 @@ app.controller('MainController', ['$http', function($http) {
   this.test = "123";
   this.allUsers = [];
   this.onePost = {};
+  let currentPost = '';
 
   // Show Posts Function
   this.getAllPosts = () => {
@@ -23,36 +24,25 @@ app.controller('MainController', ['$http', function($http) {
   // Initial Show Posts Call
   this.getAllPosts();
 
-  let currentPost = '';
-  this.toggle     = true;
-
-  this.toggleView = () => {
-    this.toggle = !this.toggle;
-  };
-  
   //  Show One Post
   this.getOne = (post) => {
     currentPost = post;
-    this.showOnePost = {
-      artist: post.artist,
-      songTitle: post.songTitle,
-      url: post.url,
-      tag: post.tag,
-      user: post.user,
-    };
-  }
+    console.log(currentPost);
+    id = currentPost._id;
+    console.log(id);
 
-  // this.showOnePost = () => {
-  //   $http({
-  //     url: "/posts/" + id,
-  //     method: "get"
-  //   }).then(response => {
-  //     this.onePost = response.data;
-  //   }, ex => {
-  //     console.error(ex.data.err);
-  //     this.error = ex.statusText;
-  //   }).catch(err => this.error = "Server broke?");
-  // };
+    $http({
+      url: "/posts/" + id,
+      method: "get"
+    }).then(response => {
+      this.onePost = response.data.onePost;
+      this.onePost.comments = response.data.commentsOnOnePost;
+      console.log(this.onePost);
+    }, ex => {
+      console.error(ex.data.err);
+      this.error = ex.statusText;
+    }).catch(err => this.error = "Server broke?");
+  };
 
   // Get All Users
   this.getAllUsers = () => {
@@ -197,7 +187,7 @@ app.config(['$routeProvider','$locationProvider', function($routeProvider, $loca
     templateUrl: "../partials/users.html"
   })
 
-  $routeProvider.when("/posts/", {
+  $routeProvider.when("/one_post/", {
     templateUrl: "../partials/show_one_post.html"
   })
 
