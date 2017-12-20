@@ -6,6 +6,7 @@ app.controller('MainController', ['$http', function($http) {
   this.loggedInUser = {};
   this.test = "123";
   this.allUsers = [];
+  this.onePost = {};
 
   // Show Posts Function
   this.getAllPosts = () => {
@@ -21,6 +22,37 @@ app.controller('MainController', ['$http', function($http) {
 
   // Initial Show Posts Call
   this.getAllPosts();
+
+  let currentPost = '';
+  this.toggle     = true;
+
+  this.toggleView = () => {
+    this.toggle = !this.toggle;
+  };
+  
+  //  Show One Post
+  this.getOne = (post) => {
+    currentPost = post;
+    this.showOnePost = {
+      artist: post.artist,
+      songTitle: post.songTitle,
+      url: post.url,
+      tag: post.tag,
+      user: post.user,
+    };
+  }
+
+  // this.showOnePost = () => {
+  //   $http({
+  //     url: "/posts/" + id,
+  //     method: "get"
+  //   }).then(response => {
+  //     this.onePost = response.data;
+  //   }, ex => {
+  //     console.error(ex.data.err);
+  //     this.error = ex.statusText;
+  //   }).catch(err => this.error = "Server broke?");
+  // };
 
   // Get All Users
   this.getAllUsers = () => {
@@ -163,6 +195,10 @@ app.config(['$routeProvider','$locationProvider', function($routeProvider, $loca
 
   $routeProvider.when("/users", {
     templateUrl: "../partials/users.html"
+  })
+
+  $routeProvider.when("/posts/", {
+    templateUrl: "../partials/show_one_post.html"
   })
 
 }]);
