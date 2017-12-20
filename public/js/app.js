@@ -5,7 +5,7 @@ app.controller('MainController', ['$http', function($http) {
   this.post = {};
   this.loggedInUser = {};
   this.test = "123";
-  this.users = [];
+  this.allUsers = [];
 
   // Show Posts Function
   this.getAllPosts = () => {
@@ -22,20 +22,20 @@ app.controller('MainController', ['$http', function($http) {
   // Initial Show Posts Call
   this.getAllPosts();
 
-  // // Get All Users
-  // this.getAllUsers = () => {
-  //   $http({
-  //     url: "/users", method: "get"
-  //   }).then(response => {
-  //     this.users = response.data;
-  //     console.log(this.users);
-  //   }, ex => {
-  //     console.error(ex.data.err);
-  //     this.error = ex.statusText;
-  //   }).catch(err => this.error = "Server broke?");
-  // };
-  //
-  // this.getAllUsers();
+  // Get All Users
+  this.getAllUsers = () => {
+    $http({
+      url: "/users", method: "get"
+    }).then(response => {
+      this.allUsers = response.data.users;
+      console.log(this.allUsers);
+    }, ex => {
+      console.error(ex.data.err);
+      this.error = ex.statusText;
+    }).catch(err => this.error = "Server broke?");
+  };
+
+  this.getAllUsers();
 
   // Auth Functions
 
