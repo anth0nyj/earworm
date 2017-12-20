@@ -6,6 +6,8 @@ app.controller('MainController', ['$http', function($http) {
   this.loggedInUser = {};
   this.test = "123";
   this.allUsers = [];
+  this.onePost = {};
+  let currentPost = '';
 
   // Show Posts Function
   this.getAllPosts = () => {
@@ -21,6 +23,26 @@ app.controller('MainController', ['$http', function($http) {
 
   // Initial Show Posts Call
   this.getAllPosts();
+
+  //  Show One Post
+  this.getOne = (post) => {
+    currentPost = post;
+    console.log(currentPost);
+    id = currentPost._id;
+    console.log(id);
+
+    $http({
+      url: "/posts/" + id,
+      method: "get"
+    }).then(response => {
+      this.onePost = response.data.onePost;
+      this.onePost.comments = response.data.commentsOnOnePost;
+      console.log(this.onePost);
+    }, ex => {
+      console.error(ex.data.err);
+      this.error = ex.statusText;
+    }).catch(err => this.error = "Server broke?");
+  };
 
   // Get All Users
   this.getAllUsers = () => {
@@ -163,6 +185,10 @@ app.config(['$routeProvider','$locationProvider', function($routeProvider, $loca
 
   $routeProvider.when("/users", {
     templateUrl: "../partials/users.html"
+  })
+
+  $routeProvider.when("/one_post/", {
+    templateUrl: "../partials/show_one_post.html"
   })
 
 }]);
