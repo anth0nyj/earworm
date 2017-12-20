@@ -28,7 +28,6 @@ app.controller('MainController', ['$http', function($http) {
       url: "/users", method: "get"
     }).then(response => {
       this.allUsers = response.data.users;
-      console.log(this.allUsers);
     }, ex => {
       console.error(ex.data.err);
       this.error = ex.statusText;
@@ -106,7 +105,7 @@ app.controller('MainController', ['$http', function($http) {
       console.log("New post successful!");
       this.post = response.data;
       console.log(this.post);
-      this.posts.push(this.post);
+      this.allPosts.push(this.post);
       this.getAllPosts();
       this.formData = null;
     }, ex => {
@@ -117,14 +116,14 @@ app.controller('MainController', ['$http', function($http) {
   }
 
   // Delete Post
-  this.deletePost = (postToDelete) => {
+  this.deletePost = (id) => {
     $http({
-      url: "/posts/" + postToDelete._id,
-      method: "delete"
+      url: "/posts/" + id,
+      method: "DELETE"
     }).then(response => {
       console.log("Post deleted");
-      const postIndex = this.posts.findIndex(post => post._id === postToDelete._id);
-      this.posts.splice(postIndex, 1);
+      const postIndex = this.allPosts.findIndex(post => post._id === id._id);
+      this.allPosts.splice(postIndex, 1);
     }, ex => {
       console.error(ex.data.err);
       this.error = ex.statusText;
