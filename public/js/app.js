@@ -55,20 +55,19 @@ app.controller('MainController', ['$http', function($http) {
   // Log In
   this.loginUser = () => {
     $http({
-    url: '/session/login',
-    method: 'post',
-    data: this.loginForm })
-        .then(response =>  {
-          console.log('Log in successful!');
-          this.user = response.data.user;
-          // console.log(this.user);
-          this.loggedInUser = this.user;
-          // console.log(this.loggedInUser);
-        }, ex => {
-          console.log(ex.data.err);
-          this.error = ex.statusText;
-        })
-        .catch(err => this.error = 'Server broke?' );
+      url: '/session/login',
+      method: 'post',
+      data: this.loginForm
+    }).then(response =>  {
+      console.log('Log in successful!');
+      this.user = response.data.user;
+      // console.log(this.user);
+      this.loggedInUser = this.user;
+      // console.log(this.loggedInUser);
+    }, ex => {
+      console.log(ex.data.err);
+      this.error = ex.statusText;
+    }).catch(err => this.error = 'Server broke?' );
   };
 
   // Log Out
