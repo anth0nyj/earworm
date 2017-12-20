@@ -134,7 +134,7 @@ a.join {
 
 }
 
-.post_bar {
+.menu_bar {
   width: 100%;
   height: 2em;
   text-align: center;
@@ -169,7 +169,7 @@ li:hover {
   background: #222;
 }
 
-.all_posts {
+.route_area {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -215,7 +215,6 @@ li:hover {
 }
 
 button.post_tag {
-  max-width: 4em;
   height: 1.7em;
   margin: .3em;
   background: #d1d1d1;
@@ -224,6 +223,7 @@ button.post_tag {
   color: #888;
   font-size: 20px;
   text-align: center;
+  white-space: nowrap;
 }
 
 button.post_tag:hover {
@@ -246,32 +246,22 @@ button.post_tag:hover {
   width: 100%;
 }
 
-/*MODALS*/
-
-.login-modal {
-	height: 100%;
-	width: 100%;
-	z-index: 99;
-	overflow: auto;
-	display: none;
-  margin: 0;
-}
-
-.register-modal {
-	height: 100%;
-	width: 100%;
-	overflow: auto;
-	display: none;
+.login-box {
+  display: none;
+  width: 100%;
+  height: 10em;
+  background: rgba(51, 51, 51, 0.8);
+  align-self: right;
   z-index: 99;
+  text-align: center;
 }
 
-.login-box, .register-box {
-	background-color: #f2f2f2;
-	height: 10em;
-	width: 150px;
-	padding: 20px;
-	border: 1px solid #ccc;
-  color: black;
-  z-index: 100;
-  margin-left: 70%;
+.register-box {
+  display: none;
+  width: 100%;
+  height: 10em;
+  background: rgba(51, 51, 51, 0.8);
+  align-self: right;
+  z-index: 99;
+  text-align: center;
 }

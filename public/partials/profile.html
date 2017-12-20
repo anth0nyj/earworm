@@ -1,1 +1,7 @@
-hello
+<h1>{{ctrl.loggedInUser.username}}'s Profile</h1>
+
+<div ng-repeat="post in ctrl.allPosts">
+  <div ng-if="post.user._id === ctrl.loggedInUser._id">
+    {{post}}
+  </div>
+</div>
