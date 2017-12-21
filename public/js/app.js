@@ -176,24 +176,46 @@ app.controller('MainController', ['$http', function($http) {
   }
 
   // Toggle Edit Button/Edit Form
-  this.showEdit = (post) => {
+  this.showOneEdit = () => {
     this.editData = {};
-    this.showForm = post._id;
+    this.showOneForm = !this.showOneForm;
   }
 
   // Edit Post
-  this.editPost = (post) => {
+  this.editOnePost = (post) => {
     $http({
       method: "put",
       url: "/posts/" + post._id,
       data: this.formData
     }).then(response => {
       this.post = response.data;
-      this.getAllPosts();
+      this.getOne(this.post);
+      this.showOneEdit();
     }, error => {
       console.error(error);
     }).catch(err => console.error("Catch: ", err));
   }
+
+  // // Toggle Edit Button/Edit Form
+  // this.showEdit = (post) => {
+  //   this.editData = {};
+  //   this.showForm = post._id;
+  // }
+  //
+  // // Edit Post
+  // this.editPost = (post) => {
+  //   $http({
+  //     method: "put",
+  //     url: "/posts/" + post._id,
+  //     data: this.formData
+  //   }).then(response => {
+  //     this.post = response.data;
+  //     this.getAllPosts();
+  //   }, error => {
+  //     console.error(error);
+  //   }).catch(err => console.error("Catch: ", err));
+  // }
+  
   }]); //ends
 
 app.config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider) {
