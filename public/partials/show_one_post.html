@@ -25,12 +25,18 @@
           <p>{{ comment.content }}</p>
         </div>
       </div>
+
+      <!-- Comment Form -->
       <div class="post_comment">
-        <form>
+        <form ng-submit="ctrl.addComment()">
           <div class="comment_submit">
-            Add a Comment<input type="submit">
+            Add a Comment
+            <input ng-model="ctrl.formData.content" class="comment_space" />
+            <input type="hidden" value="ctrl.user" ng-model="ctrl.formData.user">
+            <input type="hidden" value="ctrl.currentPost" ng-model="ctrl.formData.post">
+            <input type="submit">
           </div>
-          <textarea class="comment_space"></textarea>
+          <!-- <textarea ng-model="ctrl.formData.comment" class="comment_space"></textarea> -->
         </form>
       </div>
     </div>
