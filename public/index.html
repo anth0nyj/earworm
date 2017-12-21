@@ -73,7 +73,10 @@
         <!-- End Menu Bar -->
 
         <!-- Routes will post to here -->
-        <div class="route_area" ng-view></div>
+        <!-- <div class="route_area" ng-view></div> -->
+        <div class="route_area">
+          <ng-view id="route-view" onload="/"></ng-view>
+        </div>
 
       <!-- closes main content -->
       </div>
