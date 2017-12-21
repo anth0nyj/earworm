@@ -8,7 +8,7 @@ app.controller('MainController', ['$http', function($http) {
   this.allUsers = [];
   this.onePost = {};
   this.deleteToggled = true;
-  let currentPost = '';
+  this.currentPost = {};
   this.allComments = [];
 
   // Show Posts Function
@@ -28,8 +28,9 @@ app.controller('MainController', ['$http', function($http) {
 
   //  Show One Post
   this.getOne = (post) => {
+    console.log(post);
     currentPost = post;
-    // console.log(currentPost);
+    console.log(currentPost);
     id = currentPost._id;
     // console.log(id);
 
@@ -139,21 +140,6 @@ app.controller('MainController', ['$http', function($http) {
     }).catch(err => this.error = "Server broke?");
   }
 
-  // // Delete Post
-  // this.deletePost = (id) => {
-  //   $http({
-  //     url: "/posts/" + id,
-  //     method: "DELETE"
-  //   }).then(response => {
-  //     console.log("Post deleted");
-  //     const postIndex = this.allPosts.findIndex(post => post._id === id._id);
-  //     this.allPosts.splice(postIndex, 1);
-  //   }, ex => {
-  //     console.error(ex.data.err);
-  //     this.error = ex.statusText;
-  //   }).catch(err => this.error = "Server broke?");
-  // }
-
   // Toggle Delete Button / Return Link
   this.deleteToggle = () => {
     this.deleteToggled = !this.deleteToggled;
@@ -198,7 +184,7 @@ app.controller('MainController', ['$http', function($http) {
     }).catch(err => console.error("Catch: ", err));
   }
 
-  this.addComment = () => {
+  this.addComment = (post, user) => {
     console.log("addComment triggered");
     $http({
       url: "/comments",
@@ -206,17 +192,10 @@ app.controller('MainController', ['$http', function($http) {
       data: {
         content: this.formData.content,
         user: this.user,
-        post: this.formData.post
+        post: this.onePost
       }
     }).then(response => {
       console.log(response.data);
-      // this.comment = response.data;
-      // this.comment = {
-      //   _id: response.data._id,
-      //   content: this.formData.content,
-      //   user: this.user,
-      //   post: this.onePost
-      // }
       this.comment = response.data;
       this.allComments.push(this.comment);
       console.log("comment: ", this.comment);
@@ -225,26 +204,6 @@ app.controller('MainController', ['$http', function($http) {
       console.error(error);
     }).catch(err => console.error("Catch: ", err));
   }
-
-  // // Toggle Edit Button/Edit Form
-  // this.showEdit = (post) => {
-  //   this.editData = {};
-  //   this.showForm = post._id;
-  // }
-  //
-  // // Edit Post
-  // this.editPost = (post) => {
-  //   $http({
-  //     method: "put",
-  //     url: "/posts/" + post._id,
-  //     data: this.formData
-  //   }).then(response => {
-  //     this.post = response.data;
-  //     this.getAllPosts();
-  //   }, error => {
-  //     console.error(error);
-  //   }).catch(err => console.error("Catch: ", err));
-  // }
 
   }]); //ends
 
