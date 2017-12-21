@@ -26,20 +26,19 @@ app.controller('MainController', ['$http', function($http) {
   // Initial Show Posts Call
   this.getAllPosts();
 
+  this.getPostComments = (post) => {
+    this.onePost.comments = post.commentsOnOnePost;
+  }
+
   //  Show One Post
   this.getOne = (post) => {
-    console.log(post);
-    currentPost = post;
-    console.log(currentPost);
-    id = currentPost._id;
-    // console.log(id);
-
     $http({
-      url: "/posts/" + id,
-      method: "get",
+      url: "/posts/" + post._id,
+      method: "get"
     }).then(response => {
+      console.log(post);
       this.onePost = response.data.onePost;
-      this.onePost.comments = response.data.commentsOnOnePost;
+      this.getPostComments(response.data)
       // console.log(this.onePost);
     }, ex => {
       console.error(ex.data.err);
@@ -195,11 +194,12 @@ app.controller('MainController', ['$http', function($http) {
         post: this.onePost
       }
     }).then(response => {
-      console.log(response.data);
+      // console.log(response.data);
       this.comment = response.data;
       this.allComments.push(this.comment);
-      console.log("comment: ", this.comment);
-      console.log("allComments: ", this.allComments);
+      // console.log("comment: ", this.comment);
+      // console.log("allComments: ", this.allComments);
+      this.getOne(this.onePost);
     }, error => {
       console.error(error);
     }).catch(err => console.error("Catch: ", err));
