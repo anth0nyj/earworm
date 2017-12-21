@@ -9,6 +9,7 @@ app.controller('MainController', ['$http', function($http) {
   this.onePost = {};
   this.deleteToggled = true;
   let currentPost = '';
+  this.allComments = [];
 
   // Show Posts Function
   this.getAllPosts = () => {
@@ -38,7 +39,7 @@ app.controller('MainController', ['$http', function($http) {
     }).then(response => {
       this.onePost = response.data.onePost;
       this.onePost.comments = response.data.commentsOnOnePost;
-      console.log(this.onePost);
+      // console.log(this.onePost);
     }, ex => {
       console.error(ex.data.err);
       this.error = ex.statusText;
@@ -192,6 +193,34 @@ app.controller('MainController', ['$http', function($http) {
       this.getOne(this.post);
       this.showOneEdit();
       this.getAllPosts();
+    }, error => {
+      console.error(error);
+    }).catch(err => console.error("Catch: ", err));
+  }
+
+  this.addComment = () => {
+    console.log("addComment triggered");
+    $http({
+      url: "/comments",
+      method: "post",
+      data: {
+        content: this.formData.content,
+        user: this.user,
+        post: this.formData.post
+      }
+    }).then(response => {
+      console.log(response.data);
+      // this.comment = response.data;
+      // this.comment = {
+      //   _id: response.data._id,
+      //   content: this.formData.content,
+      //   user: this.user,
+      //   post: this.onePost
+      // }
+      this.comment = response.data;
+      this.allComments.push(this.comment);
+      console.log("comment: ", this.comment);
+      console.log("allComments: ", this.allComments);
     }, error => {
       console.error(error);
     }).catch(err => console.error("Catch: ", err));
