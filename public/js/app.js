@@ -7,11 +7,11 @@ app.config(function($sceDelegateProvider) {
   ]);
 });
 
-// app.config(function($sceProvider) {
-//   // Completely disable SCE.  For demonstration purposes only!
-//   // Do not use in new projects or libraries.
-//   $sceProvider.enabled(false);
-// });
+app.config(function($sceProvider) {
+  // Completely disable SCE.  For demonstration purposes only!
+  // Do not use in new projects or libraries.
+  $sceProvider.enabled(false);
+});
 
 app.controller('MainController', ['$http', function($http) {
   this.allPosts = [];
@@ -28,9 +28,9 @@ app.controller('MainController', ['$http', function($http) {
       url: "/posts", method: "get"
     }).then(response => {
       this.allPosts = response.data;
-      for (let post of this.allPosts) {
-        post.url = `src="https://open.spotify.com/embed?uri=${post.url}"`;
-      }
+      // for (let post of this.allPosts) {
+      //   post.url = `src="https://open.spotify.com/embed?uri=${post.url}"`;
+      // }
       console.log(this.allPosts);
     }, ex => {
       console.error(ex.data.err);

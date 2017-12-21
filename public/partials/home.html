@@ -1,7 +1,8 @@
 <!-- Generate All Posts -->
 <div class="all_posts" ng-repeat="post in ctrl.allPosts | filter: searchBox" ng-click="ctrl.getOne(post)">
   <div class="one_post">
-    <div class="embedded_song">
+    <div class="embedded_song" ng-bind-html="post.url">
+      <iframe ngSrc="{{post.url}}" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
       {{ post.artist }} -
       <a href="/one_post/">{{ post.songTitle }}</a>
       <a href="{{ post.url }}" target="blank">Listen here</a>
