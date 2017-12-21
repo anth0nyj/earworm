@@ -191,6 +191,7 @@ app.controller('MainController', ['$http', function($http) {
       this.post = response.data;
       this.getOne(this.post);
       this.showOneEdit();
+      this.getAllPosts();
     }, error => {
       console.error(error);
     }).catch(err => console.error("Catch: ", err));
@@ -215,7 +216,7 @@ app.controller('MainController', ['$http', function($http) {
   //     console.error(error);
   //   }).catch(err => console.error("Catch: ", err));
   // }
-  
+
   }]); //ends
 
 app.config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider) {
