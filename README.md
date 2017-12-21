@@ -3,10 +3,16 @@
 ## Introduction
 Earworm is a microblogging web app the primary purpose of which is to share with a community the song each user has had stuck in their head.
 
+## Approach
+
+
+## User Stories
+
+
 ## Technology
 ### Languages and Databases
-- Front-end: [HTML](https://html.com/), CSS, [JavaScript](https://www.javascript.com/), [Bootstrap](https://getbootstrap.com/)
-- Back-end: MEAN Stack ([MongoDB](https://www.mongodb.com), [Express.js](https://expressjs.com), [Angular.js](https://angular.io), [Node.js](https://nodejs.org/))
+- Front-end: [HTML](https://html.com/), CSS, [JavaScript](https://www.javascript.com/), jQuery, [Angular.js](https://angular.io),
+- Back-end: MEAN Stack ([MongoDB](https://www.mongodb.com), [Express.js](https://expressjs.com),  [Node.js](https://nodejs.org/))
 
 ### Software
 - [Atom](https://atom.io/)
@@ -15,4 +21,4 @@ Earworm is a microblogging web app the primary purpose of which is to share with
 - [Postman](https://www.getpostman.com/)
 
 ### Deployment
-This web app is hosted on Heroku [here](#).
+This web app is hosted on Heroku [here](https://earworm.herokuapp.com/).
