@@ -1,3 +1,16 @@
-<div ng-repeat="user in ctrl.allUsers">
-  {{user.username}}
+<div class="users_cont">
+
+    <div class="all_users" ng-repeat="user in ctrl.allUsers | filter: searchBox">
+      <a href="#">
+      <div class="ind_users">
+        <div class="ind_users_left">
+          <img src="https://i5.walmartimages.com/asr/55963c0e-9d98-4908-9375-909b6943743a_1.5f22e78a868b95dbba26e72420d87d0c.jpeg"><span class="users_user">{{user.username}}</span> <i>bio description</i>
+        </div>
+        <div class="ind_users_right">
+          # POSTS
+        </div>
+      </div>
+      </a>
+    </div>
+
 </div>

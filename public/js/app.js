@@ -6,6 +6,10 @@ app.controller('MainController', ['$http', function($http) {
   this.loggedInUser = {};
   this.test = "123";
   this.allUsers = [];
+  this.onePost = {};
+  this.deleteToggled = true;
+  this.currentPost = {};
+  this.allComments = [];
 
   // Show Posts Function
   this.getAllPosts = () => {
@@ -21,6 +25,26 @@ app.controller('MainController', ['$http', function($http) {
 
   // Initial Show Posts Call
   this.getAllPosts();
+
+  this.getPostComments = (post) => {
+    this.onePost.comments = post.commentsOnOnePost;
+  }
+
+  //  Show One Post
+  this.getOne = (post) => {
+    $http({
+      url: "/posts/" + post._id,
+      method: "get"
+    }).then(response => {
+      console.log(post);
+      this.onePost = response.data.onePost;
+      this.getPostComments(response.data)
+      // console.log(this.onePost);
+    }, ex => {
+      console.error(ex.data.err);
+      this.error = ex.statusText;
+    }).catch(err => this.error = "Server broke?");
+  };
 
   // Get All Users
   this.getAllUsers = () => {
@@ -45,6 +69,7 @@ app.controller('MainController', ['$http', function($http) {
      .then(response => {
        console.log('Register successful!');
        this.user = response.data;
+       this.loggedInUser = this.user;
      }, ex => {
        console.log(ex.data.err);
        this.error = ex.statusText;
@@ -114,8 +139,14 @@ app.controller('MainController', ['$http', function($http) {
     }).catch(err => this.error = "Server broke?");
   }
 
-  // Delete Post
-  this.deletePost = (id) => {
+  // Toggle Delete Button / Return Link
+  this.deleteToggle = () => {
+    this.deleteToggled = !this.deleteToggled;
+  }
+
+  // Delete Post From Show Page
+  this.deleteOnePost = (id) => {
+    // console.log(id);
     $http({
       url: "/posts/" + id,
       method: "DELETE"
@@ -123,6 +154,7 @@ app.controller('MainController', ['$http', function($http) {
       console.log("Post deleted");
       const postIndex = this.allPosts.findIndex(post => post._id === id._id);
       this.allPosts.splice(postIndex, 1);
+      this.deleteToggle();
     }, ex => {
       console.error(ex.data.err);
       this.error = ex.statusText;
@@ -130,24 +162,49 @@ app.controller('MainController', ['$http', function($http) {
   }
 
   // Toggle Edit Button/Edit Form
-  this.showEdit = (post) => {
+  this.showOneEdit = () => {
     this.editData = {};
-    this.showForm = post._id;
+    this.showOneForm = !this.showOneForm;
   }
 
   // Edit Post
-  this.editPost = (post) => {
+  this.editOnePost = (post) => {
     $http({
       method: "put",
       url: "/posts/" + post._id,
       data: this.formData
     }).then(response => {
       this.post = response.data;
+      this.getOne(this.post);
+      this.showOneEdit();
       this.getAllPosts();
     }, error => {
       console.error(error);
     }).catch(err => console.error("Catch: ", err));
   }
+
+  this.addComment = (post, user) => {
+    console.log("addComment triggered");
+    $http({
+      url: "/comments",
+      method: "post",
+      data: {
+        content: this.formData.content,
+        user: this.user,
+        post: this.onePost
+      }
+    }).then(response => {
+      // console.log(response.data);
+      this.comment = response.data;
+      this.allComments.push(this.comment);
+      // console.log("comment: ", this.comment);
+      // console.log("allComments: ", this.allComments);
+      this.getOne(this.onePost);
+    }, error => {
+      console.error(error);
+    }).catch(err => console.error("Catch: ", err));
+  }
+
   }]); //ends
 
 app.config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider) {
@@ -163,6 +220,10 @@ app.config(['$routeProvider','$locationProvider', function($routeProvider, $loca
 
   $routeProvider.when("/users", {
     templateUrl: "../partials/users.html"
+  })
+
+  $routeProvider.when("/one_post/", {
+    templateUrl: "../partials/show_one_post.html"
   })
 
 }]);
