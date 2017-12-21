@@ -17,6 +17,10 @@ app.controller('MainController', ['$http', function($http) {
   this.allPosts = [];
   this.post = {};
   this.loggedInUser = {};
+  this.test = "123";
+  this.allUsers = [];
+  this.onePost = {};
+  let currentPost = '';
 
   // Show Posts Function
   this.getAllPosts = () => {
@@ -37,6 +41,40 @@ app.controller('MainController', ['$http', function($http) {
   // Initial Show Posts Call
   this.getAllPosts();
 
+  //  Show One Post
+  this.getOne = (post) => {
+    currentPost = post;
+    console.log(currentPost);
+    id = currentPost._id;
+    console.log(id);
+
+    $http({
+      url: "/posts/" + id,
+      method: "get"
+    }).then(response => {
+      this.onePost = response.data.onePost;
+      this.onePost.comments = response.data.commentsOnOnePost;
+      console.log(this.onePost);
+    }, ex => {
+      console.error(ex.data.err);
+      this.error = ex.statusText;
+    }).catch(err => this.error = "Server broke?");
+  };
+
+  // Get All Users
+  this.getAllUsers = () => {
+    $http({
+      url: "/users", method: "get"
+    }).then(response => {
+      this.allUsers = response.data.users;
+    }, ex => {
+      console.error(ex.data.err);
+      this.error = ex.statusText;
+    }).catch(err => this.error = "Server broke?");
+  };
+
+  this.getAllUsers();
+
   // Auth Functions
 
   // Register
@@ -56,20 +94,19 @@ app.controller('MainController', ['$http', function($http) {
   // Log In
   this.loginUser = () => {
     $http({
-    url: '/session/login',
-    method: 'post',
-    data: this.loginForm })
-        .then(response =>  {
-          console.log('Log in successful!');
-          this.user = response.data.user;
-          // console.log(this.user);
-          this.loggedInUser = this.user;
-          // console.log(this.loggedInUser);
-        }, ex => {
-          console.log(ex.data.err);
-          this.error = ex.statusText;
-        })
-        .catch(err => this.error = 'Server broke?' );
+      url: '/session/login',
+      method: 'post',
+      data: this.loginForm
+    }).then(response =>  {
+      console.log('Log in successful!');
+      this.user = response.data.user;
+      // console.log(this.user);
+      this.loggedInUser = this.user;
+      // console.log(this.loggedInUser);
+    }, ex => {
+      console.log(ex.data.err);
+      this.error = ex.statusText;
+    }).catch(err => this.error = 'Server broke?' );
   };
 
   // Log Out
@@ -106,7 +143,7 @@ app.controller('MainController', ['$http', function($http) {
       console.log("New post successful!");
       this.post = response.data;
       console.log(this.post);
-      this.posts.push(this.post);
+      this.allPosts.push(this.post);
       this.getAllPosts();
       this.formData = null;
     }, ex => {
@@ -117,14 +154,14 @@ app.controller('MainController', ['$http', function($http) {
   }
 
   // Delete Post
-  this.deletePost = (postToDelete) => {
+  this.deletePost = (id) => {
     $http({
-      url: "/posts/" + postToDelete._id,
-      method: "delete"
+      url: "/posts/" + id,
+      method: "DELETE"
     }).then(response => {
       console.log("Post deleted");
-      const postIndex = this.posts.findIndex(post => post._id === postToDelete._id);
-      this.posts.splice(postIndex, 1);
+      const postIndex = this.allPosts.findIndex(post => post._id === id._id);
+      this.allPosts.splice(postIndex, 1);
     }, ex => {
       console.error(ex.data.err);
       this.error = ex.statusText;
@@ -153,14 +190,22 @@ app.controller('MainController', ['$http', function($http) {
   }]); //ends
 
 app.config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider) {
-$locationProvider.html5Mode({ enabled: true });
+
+  $locationProvider.html5Mode({ enabled: true });
   $routeProvider.when("/profile", {
-      templateUrl: "../partials/profile.html"
+    templateUrl: "../partials/profile.html"
   })
 
   $routeProvider.when("/", {
-      templateUrl: "../partials/home.html"
+    templateUrl: "../partials/home.html"
   })
 
+  $routeProvider.when("/users", {
+    templateUrl: "../partials/users.html"
+  })
+
+  $routeProvider.when("/one_post/", {
+    templateUrl: "../partials/show_one_post.html"
+  })
 
 }]);

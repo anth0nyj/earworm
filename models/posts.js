@@ -6,8 +6,7 @@ const postSchema   = mongoose.Schema({
   songTitle: { type: String, require: true },
   url: { type: String, require: true },
   tag: [{ type: String }],
-  // user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 });
 
 module.exports = mongoose.model('Post', postSchema);
