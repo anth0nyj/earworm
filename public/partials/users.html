@@ -1,6 +1,6 @@
 <div class="users_cont">
 
-    <div class="all_users" ng-repeat="user in ctrl.allUsers">
+    <div class="all_users" ng-repeat="user in ctrl.allUsers | filter: searchBox">
       <a href="#">
       <div class="ind_users">
         <div class="ind_users_left">
