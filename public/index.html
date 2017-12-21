@@ -38,7 +38,8 @@
           <a class="register join" href="#">JOIN</a>
           <div ng-if='ctrl.user'>
           <form ng-submit="ctrl.logout()">
-            <input type="submit" value="Logout">
+            <a class="join" href="#">LOG OUT</a>
+            <!-- <input type="submit" value="Logout"> -->
           </form>
           </div>
           </div>
@@ -52,7 +53,7 @@
         <!-- Start Menu Bar -->
         <div class="menu_bar">
           <ul>
-            <li><a href="/profile"<li>PROFILE</li></a>
+            <a href="/profile"><li>PROFILE</li></a>
             <li class="new_post">NEW &#9776; POST</li>
             <a href="/users"><li>USERS</li></a>
           </ul>
@@ -79,7 +80,7 @@
     <!-- closes container -->
     </div>
 
-    <div class="footer" ng-include="'partials/footer.html'"></div>
+    <footer ng-include="'partials/footer.html'"></footer>
 
   </body>
 </html>

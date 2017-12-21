@@ -2,6 +2,8 @@
 
 <div ng-repeat="post in ctrl.allPosts">
   <div ng-if="post.user._id === ctrl.loggedInUser._id">
-    {{post}}
+    {{post.artist}}
+    {{post.songTitle}}
+    {{post.tag}}
   </div>
 </div>
