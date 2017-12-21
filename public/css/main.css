@@ -26,6 +26,10 @@ input {
   /*height: 100vh;*/
 }
 
+/*************************/
+/*        HEADER         */
+/*************************/
+
 .header {
   height: 3.5em;
   background: #1c1c1c;
@@ -83,6 +87,10 @@ a.join {
   font-family: helvetica;
 }
 
+/*************************/
+/*         BANNER        */
+/*************************/
+
 .banner {
   display: flex;
   align-items: center;
@@ -108,6 +116,34 @@ a.join {
   position: absolute;
 }
 
+/*************************/
+/*      REG/LOG-IN       */
+/*************************/
+
+.login-box {
+  display: none;
+  width: 100%;
+  height: 10em;
+  background: rgba(51, 51, 51, 0.8);
+  align-self: right;
+  z-index: 99;
+  text-align: center;
+}
+
+.register-box {
+  display: none;
+  width: 100%;
+  height: 10em;
+  background: rgba(51, 51, 51, 0.8);
+  align-self: right;
+  z-index: 99;
+  text-align: center;
+}
+
+/*************************/
+/*      MAIN SPACE       */
+/*************************/
+
 .main_content {
   display: flex;
   flex-direction: column;
@@ -115,31 +151,19 @@ a.join {
   width: 100%;
 }
 
-.post_menu {
-  display: none;
-  width: 45em;
-  height: 20em;
-  background: #333;
-  align-self: center;
-  /*z-index: 99;*/
-  /*position: absolute;*/
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-  text-align: center;
+.route_area {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 3em;
+  margin: auto;
+  justify-content: center;
 }
 
-
-.post_menu input {
-  background: #f8f8f8;
-  width: 10em;
-  height: 2em;
-  text-align: center;
-  font-family: helvetica;
-  font-size: 18px;
-  line-height: 0;
-  margin: 1em;
-
-}
+/*************************/
+/*         NAV           */
+/*************************/
 
 .menu_bar {
   width: 100%;
@@ -176,14 +200,32 @@ li:hover {
   background: #222;
 }
 
-.route_area {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-top: 3em;
-  margin: auto;
-  justify-content: center;
+.post_menu {
+  display: none;
+  width: 45em;
+  height: 20em;
+  background: #333;
+  align-self: center;
+  /*z-index: 99;*/
+  /*position: absolute;*/
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  text-align: center;
+}
+
+/*************************/
+/*        HOME           */
+/*************************/
+
+.post_menu input {
+  background: #f8f8f8;
+  width: 10em;
+  height: 2em;
+  text-align: center;
+  font-family: helvetica;
+  font-size: 18px;
+  line-height: 0;
+  margin: 1em;
 }
 
 .one_post {
@@ -245,6 +287,171 @@ button.post_tag:hover {
   color: #9e9e9e;
 }
 
+/*************************/
+/*       SHOW PAGE       */
+/*************************/
+
+/****** POST ******/
+.show_left {
+  display: flex;
+  flex-direction: column;
+  width: 25em;
+  height: 30em;
+  float: left;
+  margin: 2em;
+}
+
+.show_posted_by {
+  width: 100%;
+  /*height: 5%;*/
+  height: 1.5em;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 1em;
+  font-family: helvetica;
+  font-size: 1.5em;
+  font-weight: 400;
+  letter-spacing: .1em;
+  line-height: 1.5em;
+}
+
+.show_song {
+  height: 17em;
+  text-align: center;
+}
+
+h1.show_artist {
+  font-family: 'Lobster Two', cursive;
+  font-size: 5em;
+  line-height: .2em;
+}
+
+h1.show_title {
+  font-family: 'Lobster Two', cursive;
+  font-size: 5em;
+  text-indent: .5em;
+  line-height: .2em;
+}
+
+.show_song a {
+  font-family: helvetica;
+  font-size: 1.5em;
+}
+
+.show_tags {
+  height: 12.5em;
+  background: rgba(255, 255, 255, 0.6);
+  overflow-y: scroll;
+  text-align: center;
+  padding: 1em;
+  border-radius: 1em;
+  box-sizing: border-box;
+}
+
+.show_tag_cont {
+  width: 100%;
+  text-align: center;
+  display: inline;
+  white-space: wrap;
+}
+
+/****** COMMENTS ******/
+.show_right {
+  display: flex;
+  flex-direction: column;
+  width: 25em;
+  height: 30em;
+  background: rgba(255, 255, 255, 0.6);
+  float: right;
+  color: black;
+  margin: 2em;
+  border-radius: 1em;
+  box-sizing: border-box;
+  /*padding: 1em;*/
+  text-align: center;
+}
+
+.show_right h2 {
+  font-family: helvetica;
+  font-size: 3em;
+  line-height: .2em;
+}
+
+.all_comments {
+  height: 20em;
+  overflow: scroll;
+}
+
+.one_comment {
+  margin: 1em auto;
+  width: 20em;
+  height: 7em;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 1em;
+}
+
+.comment_user {
+  width: 20em;
+  height: 2em;
+  background: #d1d1d1;
+  text-align: left;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+}
+
+.comment_user span {
+  margin: 1em;
+  line-height: 2em;
+}
+
+.one_comment p {
+  margin: 1em;
+  text-align: left;
+}
+
+.post_comment {
+  height: 10em;
+}
+
+.comment_submit {
+  background: #d1d1d1;
+  width: 100%;
+  height: 2em;
+}
+
+textarea.comment_space {
+  width: 25em;
+  height: 8em;
+  resize: none;
+  border: none;
+  outline: 0;
+  border-radius: 1em;
+  box-sizing: border-box;
+  padding: 1em;
+  font-size: 1em;
+  font-family: helvetica;
+  letter-spacing: .1em;
+}
+
+/*************************/
+/*     PROFILE PAGE      */
+/*************************/
+
+.profile_cont {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.profile_cont h1 {
+  text-transform: uppercase;
+}
+
+/*************************/
+/*        FOOTER         */
+/*************************/
+
 footer {
   position: absolute;
   left: 0;
@@ -260,31 +467,4 @@ footer span {
   line-height: 3em;
   color: #fff;
   font-size: 1em;
-}
-
-.profile_cont {
-  display: flex;
-  flex: 1 0 auto;
-  flex-direction: column;
-  width: 100%;
-}
-
-.login-box {
-  display: none;
-  width: 100%;
-  height: 10em;
-  background: rgba(51, 51, 51, 0.8);
-  align-self: right;
-  z-index: 99;
-  text-align: center;
-}
-
-.register-box {
-  display: none;
-  width: 100%;
-  height: 10em;
-  background: rgba(51, 51, 51, 0.8);
-  align-self: right;
-  z-index: 99;
-  text-align: center;
 }

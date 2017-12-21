@@ -1,17 +1,68 @@
-<div class="one-post" ng-hide="">
+<!-- <div class="one-post" ng-hide=""> -->
   <div ng-model="ctrl.getOne(post)">
+    Edit Delete
+      <div class="show_left">
+        <div class="show_posted_by">
+          submitted by: {{ ctrl.onePost.user.username }}
+        </div>
+        <div class="show_song">
+          <h1 class="show_artist">{{ ctrl.onePost.artist }} -</h1>
+          <h1 class="show_title">{{ ctrl.onePost.songTitle }}</h1>
+          <a href="{{ ctrl.onePost.url }}" target="blank">&#9834; LISTEN &#9834;</a>
+        </div>
 
-    {{ ctrl.onePost.artist }}
+        <div class="show_tags">
+          <div class="show_tag_cont" ng-repeat="tag in ctrl.onePost.tag">
+          <button class="post_tag">#{{tag}}</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="show_right">
+        <h2>comments</h2>
+        <div class="all_comments">
+          <div class="one_comment" ng-repeat="comment in ctrl.onePost.comments">
+            <div class="comment_user"><span>@{{ comment.user.username }}:</span></div>
+            <p>{{ comment.content }}</p>
+          </div>
+        </div>
+        <div class="post_comment">
+          <form>
+            <div class="comment_submit">
+              Add a Comment<input type="submit">
+            </div>
+            <textarea class="comment_space"></textarea>
+          </form>
+        </div>
+      </div>
+    </div>
+
+      <!-- Toggle Edit Form Button -->
+      <!-- <form ng-submit="ctrl.showEdit(post)" ng-hide="ctrl.showForm === post._id">
+        <input type="submit" value="Edit">
+      </form> -->
+
+      <!-- Edit Form -->
+      <!-- <form ng-if="ctrl.showForm === post._id" ng-submit="ctrl.editPost(post)">
+        <input type="text" placeholder={{post.artist}} ng-model="ctrl.formData.artist" />
+        <input type="text" placeholder={{post.songTitle}} ng-model="ctrl.formData.songTitle" />
+        <input type="text" placeholder={{post.url}} ng-model="ctrl.formData.url" />
+        <input type="text" placeholder={{post.tag}} ng-model="ctrl.formData.tag" />
+        <input type="submit" value="Submit">
+      </form> -->
+
+      <!-- Delete Button -->
+      <!-- <form ng-submit="ctrl.deletePost(post._id)">
+        <input type="submit" value="Delete">
+      </form>
+    </div> -->
+
+    <!-- {{ ctrl.onePost.artist }}
     {{ ctrl.onePost.songTitle }}
     {{ ctrl.onePost.url }}
     {{ ctrl.onePost.tag }}
-    {{ ctrl.onePost.user.username }}
+    {{ ctrl.onePost.user.username }} -->
 
-    <div ng-repeat="comment in ctrl.onePost.comments">
-      {{ comment.content }}
-      {{ comment.user.username }}
-    </div>
-
-  </div>
+  <!-- </div>
 </div>
-{{ post.artist }}
+{{ post.artist }} -->

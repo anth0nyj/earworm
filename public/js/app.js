@@ -33,7 +33,7 @@ app.controller('MainController', ['$http', function($http) {
 
     $http({
       url: "/posts/" + id,
-      method: "get"
+      method: "get",
     }).then(response => {
       this.onePost = response.data.onePost;
       this.onePost.comments = response.data.commentsOnOnePost;

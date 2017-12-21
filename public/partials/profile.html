@@ -1,9 +1,23 @@
-<h1>{{ctrl.loggedInUser.username}}'s Profile</h1>
+<div class="profile_cont">
+  <h1>{{ctrl.loggedInUser.username}}</h1>
 
-<div ng-repeat="post in ctrl.allPosts">
-  <div ng-if="post.user._id === ctrl.loggedInUser._id">
-    {{post.artist}}
-    {{post.songTitle}}
-    {{post.tag}}
+  <div ng-repeat="post in ctrl.allPosts">
+    <div ng-if="post.user._id === ctrl.loggedInUser._id">
+
+      <div class="one_post">
+        <div class="embedded_song">
+          {{ post.artist }} -
+          <a href="/one_post/">{{ post.songTitle }}</a>
+          <a href="{{ post.url }}" target="blank">Listen here</a>
+        </div>
+
+        <!-- Tags -->
+        <div class="tag_area">
+          <div class="post_tags" ng-repeat="tag in post.tag">
+            <button class="post_tag">#{{tag}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
