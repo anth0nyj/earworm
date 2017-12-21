@@ -7,6 +7,7 @@ app.controller('MainController', ['$http', function($http) {
   this.test = "123";
   this.allUsers = [];
   this.onePost = {};
+  this.deleteToggled = true;
   let currentPost = '';
 
   // Show Posts Function
@@ -27,9 +28,9 @@ app.controller('MainController', ['$http', function($http) {
   //  Show One Post
   this.getOne = (post) => {
     currentPost = post;
-    console.log(currentPost);
+    // console.log(currentPost);
     id = currentPost._id;
-    console.log(id);
+    // console.log(id);
 
     $http({
       url: "/posts/" + id,
@@ -67,6 +68,7 @@ app.controller('MainController', ['$http', function($http) {
      .then(response => {
        console.log('Register successful!');
        this.user = response.data;
+       this.loggedInUser = this.user;
      }, ex => {
        console.log(ex.data.err);
        this.error = ex.statusText;
@@ -136,8 +138,29 @@ app.controller('MainController', ['$http', function($http) {
     }).catch(err => this.error = "Server broke?");
   }
 
-  // Delete Post
-  this.deletePost = (id) => {
+  // // Delete Post
+  // this.deletePost = (id) => {
+  //   $http({
+  //     url: "/posts/" + id,
+  //     method: "DELETE"
+  //   }).then(response => {
+  //     console.log("Post deleted");
+  //     const postIndex = this.allPosts.findIndex(post => post._id === id._id);
+  //     this.allPosts.splice(postIndex, 1);
+  //   }, ex => {
+  //     console.error(ex.data.err);
+  //     this.error = ex.statusText;
+  //   }).catch(err => this.error = "Server broke?");
+  // }
+
+  // Toggle Delete Button / Return Link
+  this.deleteToggle = () => {
+    this.deleteToggled = !this.deleteToggled;
+  }
+
+  // Delete Post From Show Page
+  this.deleteOnePost = (id) => {
+    // console.log(id);
     $http({
       url: "/posts/" + id,
       method: "DELETE"
@@ -145,6 +168,7 @@ app.controller('MainController', ['$http', function($http) {
       console.log("Post deleted");
       const postIndex = this.allPosts.findIndex(post => post._id === id._id);
       this.allPosts.splice(postIndex, 1);
+      this.deleteToggle();
     }, ex => {
       console.error(ex.data.err);
       this.error = ex.statusText;
