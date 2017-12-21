@@ -28,7 +28,7 @@
 
       <!-- Comment Form -->
       <div class="post_comment">
-        <form ng-submit="ctrl.addComment()">
+        <form ng-submit="ctrl.addComment(post, user)">
           <div class="comment_submit">
             Add a Comment
             <input ng-model="ctrl.formData.content" class="comment_space" />
