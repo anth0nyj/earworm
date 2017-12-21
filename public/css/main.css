@@ -233,7 +233,6 @@ li:hover {
   height: 10em;
   background: #fff;
   margin: 1em 2em;
-  /*border-radius: 5px;*/
   border: 2px solid #e2e2e2;
 }
 
@@ -446,6 +445,68 @@ textarea.comment_space {
 
 .profile_cont h1 {
   text-transform: uppercase;
+}
+
+/*************************/
+/*      Users Page       */
+/*************************/
+
+.users_cont {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  align-items: center;
+}
+
+.all_users {
+  width: 100%;
+}
+
+.ind_users {
+  width: 100%;
+  height: 4em;
+  background: #fff;
+  margin: 1em 2em;
+  border: 2px solid #e2e2e2;
+  box-sizing: border-box;
+}
+
+.ind_users_left {
+  display: flex;
+  width: 75%;
+  height: 100%;
+  float: left;
+  line-height: 4em;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 1em;
+  box-sizing: border-box;
+}
+
+.ind_users_left img {
+  height: 3em;
+  margin-right: .5em;
+}
+
+.ind_users_left i {
+  margin-left: 1em;
+}
+
+span.users_user {
+  text-transform: uppercase;
+}
+
+.ind_users_right {
+  display: flex;
+  width: 25%;
+  height: 100%;
+  float: right;
+  text-align: right;
+  line-height: 4em;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 1em;
+  box-sizing: border-box;
 }
 
 /*************************/
