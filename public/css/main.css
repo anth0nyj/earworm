@@ -55,7 +55,7 @@ input {
 }
 
 .header_right {
-  width: 75%;
+  width: 85%;
   text-align: right;
   font-family: helvetica;
 }
@@ -85,6 +85,10 @@ a.join {
   border-radius: .2em;
   margin-left: 1em;
   font-family: helvetica;
+}
+
+span.logoutt {
+  margin-left: 1em;
 }
 
 /*************************/
@@ -670,7 +674,22 @@ a.return {
 
 a.return:hover {
   background: #aaa;
-  color: fff;
+  color: #fff;
+}
+
+input.delete_button {
+  width: 10em;
+  height: 1.5em;
+  float: right;
+  margin-right: 1em;
+  margin-bottom: 1em;
+  background: #d1d1d1;
+  border: none;
+  box-sizing: border-box;
+}
+
+input.delete_button:hover {
+  background: #bfbfbf;
 }
 
 /*************************/
@@ -716,6 +735,10 @@ a.return:hover {
 
 .all_users {
   width: 100%;
+}
+
+.all_users a {
+  color: #bf3990;
 }
 
 .ind_users {
