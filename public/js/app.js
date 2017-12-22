@@ -1,6 +1,20 @@
-const app = angular.module('EarwormApp', ['ngRoute']);
+const app = angular.module('EarwormApp', ['ngRoute', 'ngSanitize']);
 
-app.controller('MainController', ['$http', function($http) {
+// app.config(function($sceDelegateProvider) {
+//   $sceDelegateProvider.resourceUrlWhitelist([
+//     'self',
+//     'https://open.spotify.com/'
+//   ]);
+// });
+//
+// app.config(function($sceProvider) {
+//   // Completely disable SCE.  For demonstration purposes only!
+//   // Do not use in new projects or libraries.
+//   $sceProvider.enabled(false);
+// });
+
+app.controller('MainController', ['$http', '$scope', '$sce', function($http, $scope, $sce) {
+
   this.allPosts = [];
   this.post = {};
   this.loggedInUser = {};
@@ -10,6 +24,30 @@ app.controller('MainController', ['$http', function($http) {
   this.currentPost = {};
   this.allComments = [];
   this.oneUser = {};
+  $scope.track = {};
+
+  //  Show One Post
+  this.getOne = (post) => {
+    $http({
+      url: "/posts/" + post._id,
+      method: "get"
+    }).then(response => {
+      this.onePost = response.data.onePost;
+      this.onePost.comments = response.data.commentsOnOnePost;
+      // this.onePost.url = this.onePost.url.splice(25, 0, 'embed/');
+      console.log(this.onePost);
+      $scope.trustSrc = (src) => {
+        return $sce.trustAsResourceUrl(src);
+      }
+      $scope.track = {
+        src: this.onePost.url
+      }
+      console.log(this.onePost);
+    }, ex => {
+      console.error(ex.data.err);
+      this.error = ex.statusText;
+    }).catch(err => this.error = "Server broke?");
+  };
 
   // Show Posts Function
   this.getAllPosts = () => {
@@ -17,6 +55,10 @@ app.controller('MainController', ['$http', function($http) {
       url: "/posts", method: "get"
     }).then(response => {
       this.allPosts = response.data;
+      for (let post of this.allPosts) {
+        this.getOne(post)
+      }
+      console.log(this.allPosts);
     }, ex => {
       console.error(ex.data.err);
       this.error = ex.statusText;
@@ -29,21 +71,6 @@ app.controller('MainController', ['$http', function($http) {
   this.getPostComments = (post) => {
     this.onePost.comments = post.commentsOnOnePost;
   }
-
-  //  Show One Post
-  this.getOne = (post) => {
-    $http({
-      url: "/posts/" + post._id,
-      method: "get"
-    }).then(response => {
-      this.onePost = response.data.onePost;
-      this.getPostComments(response.data)
-      // console.log(this.onePost);
-    }, ex => {
-      console.error(ex.data.err);
-      this.error = ex.statusText;
-    }).catch(err => this.error = "Server broke?");
-  };
 
   // Get All Users
   this.getAllUsers = () => {

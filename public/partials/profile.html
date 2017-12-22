@@ -8,13 +8,11 @@
 
       <div class="one_post">
         <div class="embedded_song">
-          <span class="the_song">{{ post.artist }} -
-          {{ post.songTitle }}</span>
+          <iframe ng-src="{{trustSrc(post.url)}}" width="300" height="80" type="text/html" frameborder="0" allowtransparency="true"></iframe>
         </div>
 
         <div class="prof_comment_listen">
         <a class="com_lis" ng-click="ctrl.getOne(post)" href="/one_post/">leave a comment</a>
-        <a class="com_lis" href="{{ post.url }}" target="blank">&#9834; LISTEN &#9834;</a>
         </div>
 
         <!-- Tags -->

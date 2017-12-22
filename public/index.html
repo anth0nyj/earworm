@@ -11,6 +11,7 @@
     <!-- Angular CDNs -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-sanitize.min.js" charset="utf-8"></script>
     <!-- jQuery CDN -->
     <script
     src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -22,9 +23,11 @@
     <base href="/" target="_blank">
 
   </head>
+
   <body ng-controller='MainController as ctrl'>
 
-    <div class="container">
+    <!-- <iframe ng-if="ctrl.test" ng-src={{ctrl.allPosts[0].url}} width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+    <a href="{{ctrl.allPosts[0].url}}">Some text</a> -->
 
       <div class="header">
         <div class="header_content">
@@ -63,7 +66,7 @@
           <form ng-submit="ctrl.processForm(ctrl.loggedInUser._id)">
             <input type="text" placeholder="Artist" ng-model="ctrl.formData.artist" />
             <input type="text" placeholder="Song Title" ng-model="ctrl.formData.songTitle" /><br>
-            <input type="text" placeholder="URL" ng-model="ctrl.formData.url" />
+            <input type="text" placeholder="Embed URL" ng-model="ctrl.formData.url" />
             <input type="text" placeholder="Tag" ng-model="ctrl.formData.tag" />
             <input type="hidden" ng-model="ctrl.loggedInUser._id" /><br>
             <input class="new_post_close" type="submit">

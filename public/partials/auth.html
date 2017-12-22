@@ -1,23 +1,22 @@
-
   <div class="login-box">
-    <div class="auth_forms">
-      <form ng-submit='ctrl.loginUser()'>
+    <form ng-submit='ctrl.loginUser()'>
+      <div class="auth_forms">
         <h2 class="login_header">Login</h2>
         <input class="log_reg" type="text" placeholder="username" ng-model="ctrl.loginForm.username" />
         <input class="log_reg" type="password" placeholder="password" ng-model="ctrl.loginForm.password" />
-    </div>
-    <div class="auth_buttons">
-      <a class="login_close close_auth" href="#">x</a>
-      <input class="login_close auth_submit" type="submit" />
-    </div>
-      </form>
+      </div>
+      <div class="auth_buttons">
+        <a class="login_close close_auth" href="#">x</a>
+        <input class="login_close auth_submit" type="submit" />
+      </div>
+      </div>
+    </form>
   </div>
 <!-- </div> -->
 
-<!-- <div class="register-modal"> -->
   <div class="register-box">
-    <div class="auth_forms">
-      <form ng-submit='ctrl.registerUser()'>
+    <form ng-submit='ctrl.registerUser()'>
+      <div class="auth_forms">
         <h2 class="login_header">Register</h2>
         <input class="log_reg" type="text" placeholder="username" ng-model="ctrl.newUserForm.username" />
         <input class="log_reg" type="password" placeholder="password" ng-model="ctrl.newUserForm.password" />
@@ -28,7 +27,7 @@
       </div>
         <!-- <input class="reg_close" type="submit" />
         <a class="reg_close" href="#">x</a> -->
-      </form>
+    </form>
   </div>
 <!-- </div> -->
 <h1>what song's in your head?</h1>

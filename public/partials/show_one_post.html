@@ -6,7 +6,7 @@
       </div>
       <div class="show_song">
         <h1 class="show_artist">{{ ctrl.onePost.artist }} - {{ ctrl.onePost.songTitle }}</h1>
-        <a href="{{ ctrl.onePost.url }}" target="blank">&#9834; listen &#9834;</a>
+        <iframe ng-src="{{trustSrc(ctrl.onePost.url)}}" width="300" height="80" type="text/html" frameborder="0" allowtransparency="true"></iframe>
       </div>
 
       <div class="show_tags">

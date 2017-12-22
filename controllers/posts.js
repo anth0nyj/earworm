@@ -11,6 +11,7 @@ const User        = require('../models/users.js');
 
 // Index Route for all posts
 router.get('/', async (req, res) => {
+  res.setHeader('Content-Security-Policy', "iframe-src 'self' https://open.spotify.com/");
   try {
     const allPosts = await Post.find().populate('user');;
     res.status( 200 ).json( allPosts );
