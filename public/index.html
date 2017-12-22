@@ -39,7 +39,7 @@
           <span ng-if="ctrl.user.username">Hi, {{ ctrl.user.username }} !</span>
           <span ng-if='ctrl.user'>
           <form ng-submit="ctrl.logout()">
-            <input type="submit" value="Logout">
+            <input class="logout_button" type="submit" value="Logout">
           </form>
           </span>
           <a ng-if="!ctrl.user.username" class="login" href="#">LOG IN</a>
