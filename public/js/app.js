@@ -1,19 +1,20 @@
-const app = angular.module('EarwormApp', ['ngRoute']);
+const app = angular.module('EarwormApp', ['ngRoute', 'ngSanitize']);
 
-app.config(function($sceDelegateProvider) {
-  $sceDelegateProvider.resourceUrlWhitelist([
-    'self',
-    'https://open.spotify.com/'
-  ]);
-});
+// app.config(function($sceDelegateProvider) {
+//   $sceDelegateProvider.resourceUrlWhitelist([
+//     'self',
+//     'https://open.spotify.com/'
+//   ]);
+// });
+//
+// app.config(function($sceProvider) {
+//   // Completely disable SCE.  For demonstration purposes only!
+//   // Do not use in new projects or libraries.
+//   $sceProvider.enabled(false);
+// });
 
-app.config(function($sceProvider) {
-  // Completely disable SCE.  For demonstration purposes only!
-  // Do not use in new projects or libraries.
-  $sceProvider.enabled(false);
-});
+app.controller('MainController', ['$http', '$scope', '$sce', function($http, $scope, $sce) {
 
-app.controller('MainController', ['$http', function($http) {
   this.allPosts = [];
   this.post = {};
   this.loggedInUser = {};
@@ -28,9 +29,14 @@ app.controller('MainController', ['$http', function($http) {
       url: "/posts", method: "get"
     }).then(response => {
       this.allPosts = response.data;
-      // for (let post of this.allPosts) {
-      //   post.url = `src="https://open.spotify.com/embed?uri=${post.url}"`;
-      // }
+      for (let post of this.allPosts) {
+        // $scope.trustSrc = function(src) {
+        //   return $sce.trustAsResourceUrl(src)
+        // }
+        // $scope.track = {
+        //   src: "https://open.spotify.com/track/2paWUJOeEHip8XWcRSz61t"
+        // }
+      }
       console.log(this.allPosts);
     }, ex => {
       console.error(ex.data.err);
