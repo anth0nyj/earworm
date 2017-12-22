@@ -37,13 +37,13 @@
           <div class="header_right">
           <input class="search" type="text" placeholder="SEARCH" data-ng-model="searchBox">
           <span ng-if="ctrl.user.username">Hi, {{ ctrl.user.username }} !</span>
-          <a ng-if="!ctrl.user.username" class="login" href="#">LOG IN</a>
-          <a ng-if="!ctrl.user.username" class="register join" href="#">JOIN</a>
-          <div ng-if='ctrl.user'>
+          <span ng-if='ctrl.user'>
           <form ng-submit="ctrl.logout()">
             <input type="submit" value="Logout">
           </form>
-          </div>
+          </span>
+          <a ng-if="!ctrl.user.username" class="login" href="#">LOG IN</a>
+          <a ng-if="!ctrl.user.username" class="register join" href="#">JOIN</a>
           </div>
         </div>
       </div>
