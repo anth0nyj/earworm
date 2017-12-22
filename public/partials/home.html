@@ -3,7 +3,7 @@
   <div class="one_post">
     <div class="embedded_song">
 
-      <iframe ng-src="{{trustSrc(track.src)}}" width="300" height="80" type="text/html" frameborder="0" allowtransparency="true"></iframe>
+      <iframe ng-src="{{trustSrc(post.url)}}" width="300" height="80" type="text/html" frameborder="0" allowtransparency="true"></iframe>
       {{ post.artist }} -
       <a ng-click="ctrl.getOne(post)" href="/one_post/">{{ post.songTitle }}</a>
       <a href="{{ post.url }}" target="blank">Listen here</a>

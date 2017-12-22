@@ -24,6 +24,7 @@ app.controller('MainController', ['$http', '$scope', '$sce', function($http, $sc
   this.currentPost = {};
   this.allComments = [];
   this.oneUser = {};
+  $scope.track = {};
 
   // Show Posts Function
   this.getAllPosts = () => {
@@ -31,15 +32,15 @@ app.controller('MainController', ['$http', '$scope', '$sce', function($http, $sc
       url: "/posts", method: "get"
     }).then(response => {
       this.allPosts = response.data;
-      for (let post of this.allPosts) {
-        $scope.trustSrc = (src) => {
-          return $sce.trustAsResourceUrl(src)
-        }
-        $scope.track = {
-          src: post.url
-        }
-      }
-      console.log($scope.track);
+      // for (let post of this.allPosts) {
+      //   $scope.trustSrc = (src) => {
+      //     post.url = $sce.trustAsResourceUrl(src)
+      //   }
+      //   $scope.track = {
+      //     src: post.url
+      //   }
+      // }
+      // console.log($scope.track);
       console.log(this.allPosts);
     }, ex => {
       console.error(ex.data.err);
@@ -61,8 +62,16 @@ app.controller('MainController', ['$http', '$scope', '$sce', function($http, $sc
       method: "get"
     }).then(response => {
       this.onePost = response.data.onePost;
-      this.getPostComments(response.data)
-      // console.log(this.onePost);
+      this.onePost.comments = response.data.commentsOnOnePost;
+      // this.onePost.url = this.onePost.url.splice(24, 0, 'embed/');
+      console.log(this.onePost);
+      $scope.trustSrc = (src) => {
+        return $sce.trustAsResourceUrl(src);
+      }
+      $scope.track = {
+        src: this.onePost.url
+      }
+      console.log(this.onePost);
     }, ex => {
       console.error(ex.data.err);
       this.error = ex.statusText;
