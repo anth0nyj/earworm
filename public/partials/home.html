@@ -1,12 +1,12 @@
 <!-- Generate All Posts -->
-<div class="all_posts" ng-repeat="post in ctrl.allPosts | filter: searchBox" ng-click="ctrl.getOne(post)">
+<div class="all_posts" ng-repeat="post in ctrl.allPosts | filter: searchBox">
   <div class="one_post">
     <div class="embedded_song">
 
       <iframe ng-src="{{trustSrc(track.src)}}" width="300" height="80" type="text/html" frameborder="0" allowtransparency="true"></iframe>
       {{ post.artist }} -
-      <a href="/one_post/">{{ post.songTitle }}</a>
-      <a href={{post.url}} target="blank">Listen here</a>
+      <a ng-click="ctrl.getOne(post)" href="/one_post/">{{ post.songTitle }}</a>
+      <a href="{{ post.url }}" target="blank">Listen here</a>
     </div>
 
     <!-- Submitted By -->
