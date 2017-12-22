@@ -1,23 +1,33 @@
-<!-- <div class="login-modal"> -->
+
   <div class="login-box">
-    Login:<br>
-    <form ng-submit='ctrl.loginUser()'>
-      <input class="log_reg" type="text" placeholder="username" ng-model="ctrl.loginForm.username" />
-      <input class="log_reg" type="password" placeholder="password" ng-model="ctrl.loginForm.password" />
-      <input class="login_close" type="submit" />
-      <a class="login_close" href="#">x</a>
-    </form>
+    <div class="auth_forms">
+      <form ng-submit='ctrl.loginUser()'>
+        <h2 class="login_header">Login</h2>
+        <input class="log_reg" type="text" placeholder="username" ng-model="ctrl.loginForm.username" />
+        <input class="log_reg" type="password" placeholder="password" ng-model="ctrl.loginForm.password" />
+    </div>
+    <div class="auth_buttons">
+      <a class="login_close close_auth" href="#">x</a>
+      <input class="login_close auth_submit" type="submit" />
+    </div>
+      </form>
   </div>
 <!-- </div> -->
 
 <!-- <div class="register-modal"> -->
   <div class="register-box">
-      Register:<br>
+    <div class="auth_forms">
       <form ng-submit='ctrl.registerUser()'>
+        <h2 class="login_header">Register</h2>
         <input class="log_reg" type="text" placeholder="username" ng-model="ctrl.newUserForm.username" />
         <input class="log_reg" type="password" placeholder="password" ng-model="ctrl.newUserForm.password" />
-        <input class="reg_close" type="submit" />
-        <a class="reg_close" href="#">x</a>
+      </div>
+      <div class="auth_buttons">
+        <a class="reg_close close_auth" href="#">x</a>
+        <input class="reg_close auth_submit" type="submit" />
+      </div>
+        <!-- <input class="reg_close" type="submit" />
+        <a class="reg_close" href="#">x</a> -->
       </form>
   </div>
 <!-- </div> -->
