@@ -2,10 +2,10 @@
   <div class="login-box">
     Login:<br>
     <form ng-submit='ctrl.loginUser()'>
-      <input type="text" placeholder="username" ng-model="ctrl.loginForm.username" />
-      <input type="password" placeholder="password" ng-model="ctrl.loginForm.password" />
-      <input type="submit" />
-      <a class="close-modal" href="#">x</a>
+      <input class="log_reg" type="text" placeholder="username" ng-model="ctrl.loginForm.username" />
+      <input class="log_reg" type="password" placeholder="password" ng-model="ctrl.loginForm.password" />
+      <input class="login_close" type="submit" />
+      <a class="login_close" href="#">x</a>
     </form>
   </div>
 <!-- </div> -->
@@ -14,10 +14,10 @@
   <div class="register-box">
       Register:<br>
       <form ng-submit='ctrl.registerUser()'>
-        <input type="text" placeholder="username" ng-model="ctrl.newUserForm.username" />
-        <input type="password" placeholder="password" ng-model="ctrl.newUserForm.password" />
-        <input type="submit" />
-        <a class="close-modal" href="#">x</a>
+        <input class="log_reg" type="text" placeholder="username" ng-model="ctrl.newUserForm.username" />
+        <input class="log_reg" type="password" placeholder="password" ng-model="ctrl.newUserForm.password" />
+        <input class="reg_close" type="submit" />
+        <a class="reg_close" href="#">x</a>
       </form>
   </div>
 <!-- </div> -->

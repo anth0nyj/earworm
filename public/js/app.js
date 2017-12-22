@@ -4,12 +4,12 @@ app.controller('MainController', ['$http', function($http) {
   this.allPosts = [];
   this.post = {};
   this.loggedInUser = {};
-  this.test = "123";
   this.allUsers = [];
   this.onePost = {};
   this.deleteToggled = true;
   this.currentPost = {};
   this.allComments = [];
+  this.oneUser = {};
 
   // Show Posts Function
   this.getAllPosts = () => {
@@ -36,7 +36,6 @@ app.controller('MainController', ['$http', function($http) {
       url: "/posts/" + post._id,
       method: "get"
     }).then(response => {
-      console.log(post);
       this.onePost = response.data.onePost;
       this.getPostComments(response.data)
       // console.log(this.onePost);
@@ -59,6 +58,19 @@ app.controller('MainController', ['$http', function($http) {
   };
 
   this.getAllUsers();
+
+  this.getUser = (user) => {
+    $http({
+      url: "/users/profile/" + user._id,
+      method: "get"
+    }).then(response => {
+      this.oneUser = response.data.user;
+      this.oneUser.allPostsByOneUser = response.data.allPostsByOneUser,
+      console.log(this.oneUser);
+    }, ex => {
+      console.error(ex.data.err);
+    }).catch(err => console.error("Catch: ", err));
+  }
 
   // Auth Functions
 
@@ -183,6 +195,7 @@ app.controller('MainController', ['$http', function($http) {
     }).catch(err => console.error("Catch: ", err));
   }
 
+  // Add Comment
   this.addComment = (post, user) => {
     console.log("addComment triggered");
     $http({
@@ -205,6 +218,19 @@ app.controller('MainController', ['$http', function($http) {
     }).catch(err => console.error("Catch: ", err));
   }
 
+  // Delete Comment
+  this.deleteComment = (comment) => {
+    console.log("Comment delete button triggered");
+    console.log(comment);
+    $http({
+      url: "/comments/" + comment._id,
+      method: "DELETE"
+    }).then(response => {
+      console.log("Comment deleted");
+      this.getOne(this.onePost);
+    })
+  }
+
   }]); //ends
 
 app.config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider) {
@@ -224,6 +250,10 @@ app.config(['$routeProvider','$locationProvider', function($routeProvider, $loca
 
   $routeProvider.when("/one_post/", {
     templateUrl: "../partials/show_one_post.html"
+  })
+
+  $routeProvider.when("/user", {
+    templateUrl: "../partials/one_user.html"
   })
 
 }]);
