@@ -26,35 +26,6 @@ app.controller('MainController', ['$http', '$scope', '$sce', function($http, $sc
   this.oneUser = {};
   $scope.track = {};
 
-  // Show Posts Function
-  this.getAllPosts = () => {
-    $http({
-      url: "/posts", method: "get"
-    }).then(response => {
-      this.allPosts = response.data;
-      // for (let post of this.allPosts) {
-      //   $scope.trustSrc = (src) => {
-      //     post.url = $sce.trustAsResourceUrl(src)
-      //   }
-      //   $scope.track = {
-      //     src: post.url
-      //   }
-      // }
-      // console.log($scope.track);
-      console.log(this.allPosts);
-    }, ex => {
-      console.error(ex.data.err);
-      this.error = ex.statusText;
-    }).catch(err => this.error = "Server broke?");
-  };
-
-  // Initial Show Posts Call
-  this.getAllPosts();
-
-  this.getPostComments = (post) => {
-    this.onePost.comments = post.commentsOnOnePost;
-  }
-
   //  Show One Post
   this.getOne = (post) => {
     $http({
@@ -77,6 +48,29 @@ app.controller('MainController', ['$http', '$scope', '$sce', function($http, $sc
       this.error = ex.statusText;
     }).catch(err => this.error = "Server broke?");
   };
+
+  // Show Posts Function
+  this.getAllPosts = () => {
+    $http({
+      url: "/posts", method: "get"
+    }).then(response => {
+      this.allPosts = response.data;
+      for (let post of this.allPosts) {
+        this.getOne(post)
+      }
+      console.log(this.allPosts);
+    }, ex => {
+      console.error(ex.data.err);
+      this.error = ex.statusText;
+    }).catch(err => this.error = "Server broke?");
+  };
+
+  // Initial Show Posts Call
+  this.getAllPosts();
+
+  this.getPostComments = (post) => {
+    this.onePost.comments = post.commentsOnOnePost;
+  }
 
   // Get All Users
   this.getAllUsers = () => {
