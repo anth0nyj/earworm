@@ -36,9 +36,9 @@
           </div>
           <div class="header_right">
           <input class="search" type="text" placeholder="SEARCH" data-ng-model="searchBox">
-          Hi, {{ ctrl.user.username }} !
-          <a class="login" href="#">LOG IN</a>
-          <a class="register join" href="#">JOIN</a>
+          <span ng-if="ctrl.user.username">Hi, {{ ctrl.user.username }} !</span>
+          <a ng-if="!ctrl.user.username" class="login" href="#">LOG IN</a>
+          <a ng-if="!ctrl.user.username" class="register join" href="#">JOIN</a>
           <div ng-if='ctrl.user'>
           <form ng-submit="ctrl.logout()">
             <input type="submit" value="Logout">
@@ -55,9 +55,9 @@
         <!-- Start Menu Bar -->
         <div class="menu_bar">
           <ul>
-            <a href="/profile"><li>PROFILE</li></a>
-            <li class="new_post">NEW &#9776; POST</li>
-            <a href="/users"><li>USERS</li></a>
+            <a ng-if="ctrl.user.username" href="/profile"><li>PROFILE</li></a>
+            <li class="new_post"><a ng-if="ctrl.user.username" href="#"">NEW &#9776; POST</a></li>
+            <a ng-if="ctrl.user.username" href="/users"><li>USERS</li></a>
           </ul>
         </div>
 
