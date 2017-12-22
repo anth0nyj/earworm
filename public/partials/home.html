@@ -3,9 +3,7 @@
   <div class="one_post">
     <div class="embedded_song">
 
-      <!-- <iframe frame-ancestors="self" ng-src="{{trustSrc(track.src)}}" width="300" height="80" frameborder="0" allowtransparency="true"></iframe> -->
-
-      <iframe src="https://open.spotify.com/track/2paWUJOeEHip8XWcRSz61t" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+      <iframe ng-src="{{trustSrc(track.src)}}" width="300" height="80" type="text/html" frameborder="0" allowtransparency="true"></iframe>
       {{ post.artist }} -
       <a href="/one_post/">{{ post.songTitle }}</a>
       <a href={{post.url}} target="blank">Listen here</a>
@@ -23,25 +21,5 @@
         <button class="post_tag">#{{tag}}</button>
       </div>
     </div>
-
-    <!-- Toggle Edit Form Button -->
-    <form ng-submit="ctrl.showEdit(post)" ng-hide="ctrl.showForm === post._id">
-      <input type="submit" value="Edit">
-    </form>
-
-    <!-- Edit Form -->
-    <form ng-if="ctrl.showForm === post._id" ng-submit="ctrl.editPost(post)">
-      <input type="text" placeholder={{post.artist}} ng-model="ctrl.formData.artist" />
-      <input type="text" placeholder={{post.songTitle}} ng-model="ctrl.formData.songTitle" />
-      <input type="text" placeholder={{post.url}} ng-model="ctrl.formData.url" />
-      <input type="text" placeholder={{post.tag}} ng-model="ctrl.formData.tag" />
-      <input type="submit" value="Submit">
-    </form>
-
-    <!-- Delete Button -->
-    <form ng-submit="ctrl.deletePost(post._id)">
-      <input type="submit" value="Delete">
-    </form>
-  </div>
 
 </div>

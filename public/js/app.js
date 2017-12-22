@@ -30,13 +30,14 @@ app.controller('MainController', ['$http', '$scope', '$sce', function($http, $sc
     }).then(response => {
       this.allPosts = response.data;
       for (let post of this.allPosts) {
-        // $scope.trustSrc = function(src) {
-        //   return $sce.trustAsResourceUrl(src)
-        // }
-        // $scope.track = {
-        //   src: "https://open.spotify.com/track/2paWUJOeEHip8XWcRSz61t"
-        // }
+        $scope.trustSrc = (src) => {
+          return $sce.trustAsResourceUrl(src)
+        }
+        $scope.track = {
+          src: post.url
+        }
       }
+      console.log($scope.track);
       console.log(this.allPosts);
     }, ex => {
       console.error(ex.data.err);
