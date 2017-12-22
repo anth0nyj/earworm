@@ -122,14 +122,13 @@ span.logoutt {
 }
 
 input.logout_button {
-  width: 26.4em;
+  width: 26.5em;
   height: 1.5em;
   float: right;
-  /*margin-right: 1em;*/
-  /*margin-bottom: 1em;*/
   background: #d1d1d1;
   border: 0;
   box-sizing: border-box;
+  margin-top: .2em;
 }
 
 input.logout_button:hover {
