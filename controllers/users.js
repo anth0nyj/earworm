@@ -26,7 +26,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // User profile, with all posts
-router.get('/posts/:id', async (req, res) => {
+router.get('/profile/:id', async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     console.log(user);
