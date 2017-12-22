@@ -1,7 +1,22 @@
-<h1>{{ctrl.oneUser.username}}</h1>
+<div class="profile_head">
+  <h1>{{ctrl.oneUser.username}}</h1>
+</div>
 
 <div ng-repeat="post in ctrl.oneUser.allPostsByOneUser">
-  {{post.artist}}<br/>
-  {{post.songTitle}}<br/>
-  {{post.url}}<br/><br/><br/>
+  <div class="one_post">
+    <div class="embedded_song">
+      <span class="the_song">{{post.artist}} - {{post.songTitle}}</span>
+    </div>
+
+    <div class="prof_comment_listen">
+    <a class="com_lis" ng-click="ctrl.getOne(post)" href="/one_post/">leave a comment</a>
+    <a class="com_lis" href="{{ post.url }}" target="blank">&#9834; LISTEN &#9834;</a>
+    </div>
+
+    <div class="tag_area">
+      <div class="post_tags" ng-repeat="tag in post.tag">
+        <button class="post_tag">#{{tag}}</button>
+      </div>
+    </div>
+  </div>
 </div>
