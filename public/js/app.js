@@ -195,6 +195,7 @@ app.controller('MainController', ['$http', function($http) {
     }).catch(err => console.error("Catch: ", err));
   }
 
+  // Add Comment
   this.addComment = (post, user) => {
     console.log("addComment triggered");
     $http({
@@ -215,6 +216,19 @@ app.controller('MainController', ['$http', function($http) {
     }, error => {
       console.error(error);
     }).catch(err => console.error("Catch: ", err));
+  }
+
+  // Delete Comment
+  this.deleteComment = (comment) => {
+    console.log("Comment delete button triggered");
+    console.log(comment);
+    $http({
+      url: "/comments/" + comment._id,
+      method: "DELETE"
+    }).then(response => {
+      console.log("Comment deleted");
+      this.getOne(this.onePost);
+    })
   }
 
   }]); //ends
