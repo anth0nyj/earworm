@@ -1,18 +1,25 @@
-<div ng-repeat="post in ctrl.allPosts | filter: searchBox">
+<!-- Generate All Posts -->
+<div class="all_posts" ng-repeat="post in ctrl.allPosts | filter: searchBox">
   <div class="one_post">
     <div class="embedded_song">
-      {{ post.artist }} - {{ post.songTitle }}
-      <a href="{{ post.url }}">Listen here</a>
-      Add Comment
+
+      <iframe ng-src="{{trustSrc(post.url)}}" width="300" height="80" type="text/html" frameborder="0" allowtransparency="true"></iframe>
+      {{ post.artist }} -
+      <a ng-click="ctrl.getOne(post)" href="/one_post/">{{ post.songTitle }}</a>
+      <a href="{{ post.url }}" target="blank">Listen here</a>
     </div>
+
+    <!-- Submitted By -->
     <div class="post_content">
-      submitted by: {{post.user.username}}
+      submitted by: {{post.user.username}}<br>
+      <!-- Optional Text Box? -->
     </div>
-    <div class="post_tags" ng-repeat="tag in post.tag">
-      <button class="post_tag">#{{tag}}</button>
+
+    <!-- Tags -->
+    <div class="tag_area">
+      <div class="post_tags" ng-repeat="tag in post.tag">
+        <button class="post_tag">#{{tag}}</button>
+      </div>
     </div>
-    <form ng-submit="ctrl.deletePost(post)">
-      <input type="submit" value="Delete">
-    </form>
-  </div>
+
 </div>

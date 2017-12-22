@@ -5,6 +5,7 @@ const mongoose  = require('mongoose');
 const morgan    = require('morgan');
 const session   = require('express-session');
 const bcrypt    = require('bcrypt');
+// const ngEmbed  = require('ng-embed');
 require('pretty-error').start();
 
 // Configuration

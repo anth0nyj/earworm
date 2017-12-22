@@ -1,0 +1,71 @@
+<div ng-model="ctrl.getOne(post)">
+  <div class="show_page_cont">
+    <div class="show_left">
+      <div class="show_posted_by">
+        submitted by: {{ ctrl.onePost.user.username }}
+      </div>
+      <div class="show_song">
+        <h1 class="show_artist">{{ ctrl.onePost.artist }} - {{ ctrl.onePost.songTitle }}</h1>
+        <iframe ng-src="{{trustSrc(ctrl.onePost.url)}}" width="300" height="80" type="text/html" frameborder="0" allowtransparency="true"></iframe>
+      </div>
+
+      <div class="show_tags">
+        <div class="show_tag_cont" ng-repeat="tag in ctrl.onePost.tag">
+          <button class="post_tag">#{{tag}}</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="show_right">
+      <h2>comments</h2>
+      <div class="all_comments">
+        <div class="one_comment" ng-repeat="comment in ctrl.onePost.comments">
+          <div class="comment_user"><span>@{{ comment.user.username }}:</span></div>
+          <p>{{ comment.content }}</p>
+          <!-- Comment Delete Button -->
+          <div class="delete-comment">
+            <form ng-submit="ctrl.deleteComment(comment)">
+              <input type="submit" value="Delete">
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comment Form -->
+      <div class="post_comment">
+        <form ng-submit="ctrl.addComment(post, user)">
+          <div class="comment_submit">
+            Add a Comment
+            <input type="hidden" value="ctrl.user" ng-model="ctrl.formData.user">
+            <input type="hidden" value="ctrl.currentPost" ng-model="ctrl.formData.post">
+            <input class="com_submit" type="submit">
+          </div>
+          <textarea ng-model="ctrl.formData.content" class="comment_space"></textarea>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="edit_delete">
+  <!-- Toggle Edit Form Button -->
+<form ng-submit="ctrl.showOneEdit()" ng-hide="ctrl.showOneForm">
+  <input class="ed_buttons" type="submit" value="Edit">
+</form>
+
+<!-- Edit Form -->
+<form ng-if="ctrl.showOneForm" ng-submit="ctrl.editOnePost(ctrl.onePost)">
+  <input class="edit" type="text" placeholder={{ctrl.onePost.artist}} ng-model="ctrl.formData.artist" />
+  <input class="edit" type="text" placeholder={{ctrl.onePost.songTitle}} ng-model="ctrl.formData.songTitle" />
+  <input class="edit" type="text" placeholder={{ctrl.onePost.url}} ng-model="ctrl.formData.url" />
+  <input class="edit" type="text" placeholder={{ctrl.onePost.tag}} ng-model="ctrl.formData.tag" />
+  <input class="ed_buttons" type="submit" value="Submit">
+</form>
+<!-- Delete Button -->
+<form ng-if="ctrl.deleteToggled" ng-submit="ctrl.deleteOnePost(ctrl.onePost._id)">
+  <input class="ed_buttons" type="submit" value="Delete">
+</form>
+
+<!-- Return Link -->
+<a ng-hide="ctrl.deleteToggled" href="/">Return Home</a>
+</div>
