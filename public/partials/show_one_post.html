@@ -22,6 +22,12 @@
         <div class="one_comment" ng-repeat="comment in ctrl.onePost.comments">
           <div class="comment_user"><span>@{{ comment.user.username }}:</span></div>
           <p>{{ comment.content }}</p>
+          <!-- Comment Delete Button -->
+          <div class="delete-comment">
+            <form ng-submit="ctrl.deleteComment(comment)">
+              <input type="submit" value="Delete">
+            </form>
+          </div>
         </div>
       </div>
 
