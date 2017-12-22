@@ -9,6 +9,7 @@ app.controller('MainController', ['$http', function($http) {
   this.deleteToggled = true;
   this.currentPost = {};
   this.allComments = [];
+  this.oneUser = {};
 
   // Show Posts Function
   this.getAllPosts = () => {
@@ -63,7 +64,9 @@ app.controller('MainController', ['$http', function($http) {
       url: "/users/profile/" + user._id,
       method: "get"
     }).then(response => {
-      console.log(response.data);
+      this.oneUser = response.data.user;
+      this.oneUser.allPostsByOneUser = response.data.allPostsByOneUser,
+      console.log(this.oneUser);
     }, ex => {
       console.error(ex.data.err);
     }).catch(err => console.error("Catch: ", err));
