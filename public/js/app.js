@@ -63,7 +63,7 @@ app.controller('MainController', ['$http', '$scope', '$sce', function($http, $sc
     }).then(response => {
       this.onePost = response.data.onePost;
       this.onePost.comments = response.data.commentsOnOnePost;
-      // this.onePost.url = this.onePost.url.splice(24, 0, 'embed/');
+      // this.onePost.url = this.onePost.url.splice(25, 0, 'embed/');
       console.log(this.onePost);
       $scope.trustSrc = (src) => {
         return $sce.trustAsResourceUrl(src);
