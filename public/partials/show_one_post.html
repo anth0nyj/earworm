@@ -6,7 +6,7 @@
       </div>
       <div class="show_song">
         <h1 class="show_artist">{{ ctrl.onePost.artist }} - {{ ctrl.onePost.songTitle }}</h1>
-        <iframe ng-src="{{trustSrc(ctrl.onePost.url)}}" width="300" height="80" type="text/html" frameborder="0" allowtransparency="true"></iframe>
+        <a href="{{ ctrl.onePost.url }}" target="blank">&#9834; listen &#9834;</a>
       </div>
 
       <div class="show_tags">
@@ -22,12 +22,6 @@
         <div class="one_comment" ng-repeat="comment in ctrl.onePost.comments">
           <div class="comment_user"><span>@{{ comment.user.username }}:</span></div>
           <p>{{ comment.content }}</p>
-          <!-- Comment Delete Button -->
-          <div class="delete-comment">
-            <form ng-submit="ctrl.deleteComment(comment)">
-              <input type="submit" value="Delete">
-            </form>
-          </div>
         </div>
       </div>
 

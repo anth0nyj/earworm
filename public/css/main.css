@@ -306,33 +306,28 @@ li:hover {
   color: #2c4577;
 }
 
-/*************************/
-/*        HOME           */
-/*************************/
-
 .one_post {
   display: flex;
   flex-direction: column;
   width: 20em;
-  height: 12em;
+  height: 10em;
   background: #fff;
   margin: 1em 2em;
   border: 2px solid #e2e2e2;
 }
 
 .embedded_song {
-  height: 5em;
+  height: 3em;
   width: 100%;
   font-size: 1em;
   font-family: helvetica;
   text-align: center;
-  padding: .5em 0;
 }
 
 .comment_listen {
   display: flex;
   flex-direction: column;
-  height: 1em;
+  height: 3em;
   text-align: center;
   justify-content: center;
   margin-top: .2em;
@@ -349,7 +344,6 @@ li:hover {
   font-family: helvetica;
   text-align: center;
   color: #415c9b;
-  margin-top: .2em;
 }
 
 .tag_area {
