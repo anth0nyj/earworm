@@ -37,7 +37,7 @@ Earworm is a MEAN full-stack application using the MVC file structure (Models, V
 We worked really well together as a team. Using Trello to track our tasks and communicating clearly and frequently really helped us accomplish a lot as a team. When one of us was stuck on an issue, we often pair or trio programmed together to figure it out.
 
 ## Room for growth
-We would love to have Spotify embeds working on our application at some point. 
+We would love to have Spotify embeds working on our application at some point. Currently user permissions allow any logged in user to edit or delete posts or profiles posted by any other user. Also we would love to have more robust user profiles to include pictures and bios, but we would need full CRUD on our users model for that.
 
 ## Contributors
 - Anthony Alvarez | [github](https://github.com/anth0nyj)
