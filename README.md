@@ -5,10 +5,10 @@ Earworm is a microblogging web app the primary purpose of which is to share with
 
 #### Users can:
 - Create accounts
-- Log in
+- Log in/Log Out
 - View all songs, one song, or songs by user
 - Post, edit, and delete songs
-- Add comments
+- Add and delete comments
 
 ### Deployment
 Earworm is hosted on Heroku [here](https://earworm.herokuapp.com/).
