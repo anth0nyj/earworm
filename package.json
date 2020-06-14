@@ -17,11 +17,12 @@
   },
   "homepage": "https://github.com/anth0nyj/earworm#readme",
   "dependencies": {
-    "bcrypt": "^1.0.3",
+    "bcrypt": "^5.0.0",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
-    "mongoose": "^4.13.7",
-    "morgan": "^1.9.0",
+    "mongodb": "^3.5.9",
+    "mongoose": "^5.9.18",
+    "morgan": "^1.10.0",
     "ng-embed": "^2.2.0",
     "ng-sanitize": "0.0.2",
     "pretty-error": "^2.1.1"
