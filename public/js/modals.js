@@ -1,4 +1,4 @@
-$( () => {
+$(() => {
 
   //LOGIN
   const $login = $('.login');
@@ -16,21 +16,21 @@ $( () => {
   const $newPostClose = $('.new_post_close');
 
   //FUNCTIONS
-    //LOGIN
+  //LOGIN
   const openLogin = () => {
     $loginMenu.slideToggle("slow")
   }
   const closeLogin = () => {
     $loginMenu.slideToggle("slow");
   }
-    //REGISTER
+  //REGISTER
   const openRegister = () => {
     $registerMenu.slideToggle("slow");
   }
   const closeReg = () => {
     $registerMenu.slideToggle("slow");
   }
-    //NEW POST
+  //NEW POST
   const openMenu = () => {
     $postMenu.slideToggle("slow");
   }
@@ -39,7 +39,7 @@ $( () => {
   }
 
   //HANDLERS
-    //LOGIN
+  //LOGIN
   $login.on('click', () => {
     let display = $('.register-box').css('display');
     if (display === "none") {
@@ -47,10 +47,10 @@ $( () => {
     } else {
       closeReg();
       openLogin();
-      }
+    }
   });
   $loginClose.on('click', closeLogin);
-    //REGISTER
+  //REGISTER
   $register.on('click', () => {
     let display = $('.login-box').css('display');
     if (display === "none") {
@@ -61,7 +61,7 @@ $( () => {
     }
   });
   $regClose.on('click', closeReg);
-    //NEW POST
+  //NEW POST
   $newPost.on('click', openMenu);
   $newPostClose.on('click', closeNewPost);
 

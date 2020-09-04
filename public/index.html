@@ -1,89 +1,93 @@
 <!DOCTYPE html>
 <html ng-app="EarwormApp">
-  <head>
-    <meta charset="utf-8">
-    <title>Earworm</title>
 
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="./css/main.css">
-    <!-- Lobster 2 font from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,400i,700,700i" rel="stylesheet">
-    <!-- Angular CDNs -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" charset="utf-8"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js" charset="utf-8"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-sanitize.min.js" charset="utf-8"></script>
-    <!-- jQuery CDN -->
-    <script
-    src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>
-    <!-- Local JS Links -->
-    <script src="/js/app.js" charset="utf-8"></script>
-    <script src="/js/modals.js" charset="utf-8"></script>
-    <base href="/" target="_blank">
+<head>
+  <meta charset="utf-8">
+  <title>Earworm</title>
 
-  </head>
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="./css/main.css">
+  <!-- Lobster 2 font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,400i,700,700i" rel="stylesheet">
+  <!-- Angular CDNs -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" charset="utf-8"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js" charset="utf-8"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-sanitize.min.js"
+    charset="utf-8"></script>
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <!-- Local JS Links -->
+  <script src="/js/app.js" charset="utf-8"></script>
+  <script src="/js/modals.js" charset="utf-8"></script>
+  <base href="/" target="_blank">
 
-  <body ng-controller='MainController as ctrl'>
+</head>
 
-    <!-- <iframe ng-if="ctrl.test" ng-src={{ctrl.allPosts[0].url}} width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+<body ng-controller='MainController as ctrl'>
+
+  <!-- <iframe ng-if="ctrl.test" ng-src={{ctrl.allPosts[0].url}} width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
     <a href="{{ctrl.allPosts[0].url}}">Some text</a> -->
 
-      <div class="header">
-        <div class="header_content">
-          <div class="header_left">
-          <a class="logo" href="/">earworm</a>
-          </div>
-          <div class="header_right">
-          <input class="search" type="text" placeholder="SEARCH" data-ng-model="searchBox">
-          <span ng-if="ctrl.user.username">Hi, {{ ctrl.user.username }} !</span>
-          <span ng-if='ctrl.user'>
+  <div class="header">
+    <div class="header_content">
+      <div class="header_left">
+        <a class="logo" href="/">earworm</a>
+      </div>
+      <div class="header_right">
+        <input class="search" type="text" placeholder="SEARCH" data-ng-model="searchBox">
+        <span ng-if="ctrl.user.username">Hi, {{ ctrl.user.username }} !</span>
+        <span ng-if='ctrl.user'>
           <form ng-submit="ctrl.logout()">
             <input class="logout_button" type="submit" value="Logout">
           </form>
-          </span>
-          <a ng-if="!ctrl.user.username" class="login" href="#">LOG IN</a>
-          <a ng-if="!ctrl.user.username" class="register join" href="#">JOIN</a>
-          </div>
-        </div>
+        </span>
+        <a ng-if="!ctrl.user.username" class="login" href="#">LOG IN</a>
+        <a ng-if="!ctrl.user.username" class="register join" href="#">JOIN</a>
       </div>
+    </div>
+  </div>
 
-      <div class="banner" ng-include="'partials/auth.html'"></div>
+  <div class="banner" ng-include="'partials/auth.html'"></div>
 
-      <div class="main_content">
+  <div class="main_content">
 
-        <!-- Start Menu Bar -->
-        <div class="menu_bar">
-          <ul>
-            <a ng-if="ctrl.user.username" href="/profile"><li>PROFILE</li></a>
-            <li class="new_post"><a ng-if="ctrl.user.username" href="#"">NEW &#9776; POST</a></li>
-            <a ng-if="ctrl.user.username" href="/users"><li>USERS</li></a>
-          </ul>
-        </div>
-
-        <div class="post_menu">
-          <!-- angular does not like being the same div that has flexbox properties! -->
-          <form ng-submit="ctrl.processForm(ctrl.loggedInUser._id)">
-            <input type="text" placeholder="Artist" ng-model="ctrl.formData.artist" />
-            <input type="text" placeholder="Song Title" ng-model="ctrl.formData.songTitle" /><br>
-            <input type="text" placeholder="URL" ng-model="ctrl.formData.url" />
-            <input type="text" placeholder="Tag" ng-model="ctrl.formData.tag" />
-            <input type="hidden" ng-model="ctrl.loggedInUser._id" /><br>
-            <input class="new_post_close" type="submit">
-          </form>
-        </div>
-        <!-- End Menu Bar -->
-
-        <!-- Routes will post to here -->
-        <div class="route_area" ng-view>
-        </div>
-
-      <!-- closes main content -->
-      </div>
-    <!-- closes container -->
+    <!-- Start Menu Bar -->
+    <div class="menu_bar">
+      <ul>
+        <a ng-if="ctrl.user.username" href="/profile">
+          <li>PROFILE</li>
+        </a>
+        <li class="new_post"><a ng-if="ctrl.user.username" href="#"">NEW &#9776; POST</a></li>
+            <a ng-if=" ctrl.user.username" href="/users">
+        <li>USERS</li></a>
+      </ul>
     </div>
 
-    <footer ng-include="'partials/footer.html'"></footer>
+    <div class="post_menu">
+      <!-- angular does not like being the same div that has flexbox properties! -->
+      <form ng-submit="ctrl.processForm(ctrl.loggedInUser._id)">
+        <input type="text" placeholder="Artist" ng-model="ctrl.formData.artist" />
+        <input type="text" placeholder="Song Title" ng-model="ctrl.formData.songTitle" /><br>
+        <input type="text" placeholder="URL" ng-model="ctrl.formData.url" />
+        <input type="text" placeholder="Tag" ng-model="ctrl.formData.tag" />
+        <input type="hidden" ng-model="ctrl.loggedInUser._id" /><br>
+        <input class="new_post_close" type="submit">
+      </form>
+    </div>
+    <!-- End Menu Bar -->
 
-  </body>
+    <!-- Routes will post to here -->
+    <div class="route_area" ng-view>
+    </div>
+
+    <!-- closes main content -->
+  </div>
+  <!-- closes container -->
+  </div>
+
+  <footer ng-include="'partials/footer.html'"></footer>
+
+</body>
+
 </html>

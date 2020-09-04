@@ -13,7 +13,7 @@ const app = angular.module('EarwormApp', ['ngRoute', 'ngSanitize']);
 //   $sceProvider.enabled(false);
 // });
 
-app.controller('MainController', ['$http', '$scope', '$sce', function($http, $scope, $sce) {
+app.controller('MainController', ['$http', '$scope', '$sce', function ($http, $scope, $sce) {
 
   this.allPosts = [];
   this.post = {};
@@ -93,7 +93,7 @@ app.controller('MainController', ['$http', '$scope', '$sce', function($http, $sc
     }).then(response => {
       this.oneUser = response.data.user;
       this.oneUser.allPostsByOneUser = response.data.allPostsByOneUser,
-      console.log(this.oneUser);
+        console.log(this.oneUser);
     }, ex => {
       console.error(ex.data.err);
     }).catch(err => console.error("Catch: ", err));
@@ -104,16 +104,17 @@ app.controller('MainController', ['$http', '$scope', '$sce', function($http, $sc
   // Register
   this.registerUser = () => {
     $http({
-      url: '/users', method: 'POST', data: this.newUserForm })
-     .then(response => {
-       console.log('Register successful!');
-       this.user = response.data;
-       this.loggedInUser = this.user;
-     }, ex => {
-       console.log(ex.data.err);
-       this.error = ex.statusText;
-     })
-     .catch(err => this.error = 'Server broke?' );
+      url: '/users', method: 'POST', data: this.newUserForm
+    })
+      .then(response => {
+        console.log('Register successful!');
+        this.user = response.data;
+        this.loggedInUser = this.user;
+      }, ex => {
+        console.log(ex.data.err);
+        this.error = ex.statusText;
+      })
+      .catch(err => this.error = 'Server broke?');
   };
 
   // Log In
@@ -122,7 +123,7 @@ app.controller('MainController', ['$http', '$scope', '$sce', function($http, $sc
       url: '/session/login',
       method: 'post',
       data: this.loginForm
-    }).then(response =>  {
+    }).then(response => {
       console.log('Log in successful!');
       this.user = response.data.user;
       // console.log(this.user);
@@ -131,7 +132,7 @@ app.controller('MainController', ['$http', '$scope', '$sce', function($http, $sc
     }, ex => {
       console.log(ex.data.err);
       this.error = ex.statusText;
-    }).catch(err => this.error = 'Server broke?' );
+    }).catch(err => this.error = 'Server broke?');
   };
 
   // Log Out
@@ -258,9 +259,9 @@ app.controller('MainController', ['$http', '$scope', '$sce', function($http, $sc
     })
   }
 
-  }]); //ends
+}]); //ends
 
-app.config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider) {
+app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
   $locationProvider.html5Mode({ enabled: true });
   $routeProvider.when("/profile", {

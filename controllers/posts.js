@@ -1,11 +1,11 @@
 // Dependencies
-const express     = require('express');
-const router      = express.Router();
+const express = require('express');
+const router = express.Router();
 
 // Models
-const Post        = require('../models/posts.js');
-const Comment     = require('../models/comments.js');
-const User        = require('../models/users.js');
+const Post = require('../models/posts.js');
+const Comment = require('../models/comments.js');
+const User = require('../models/users.js');
 
 // Routes
 
@@ -14,10 +14,10 @@ router.get('/', async (req, res) => {
   res.setHeader('Content-Security-Policy', "iframe-src 'self' https://open.spotify.com/");
   try {
     const allPosts = await Post.find().populate('user');;
-    res.status( 200 ).json( allPosts );
-  } catch ( err ) {
-    console.log( err );
-    res.status( 400 ).json({ err: err.message });
+    res.status(200).json(allPosts);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ err: err.message });
   }
 });
 
@@ -25,13 +25,13 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const onePost = await Post.findById(req.params.id).populate('user');
-    console.log( onePost );
-    const commentsOnOnePost = await Comment.find({post: onePost}).populate('user').populate('post');
+    console.log(onePost);
+    const commentsOnOnePost = await Comment.find({ post: onePost }).populate('user').populate('post');
     console.log(commentsOnOnePost);
-    res.status( 200 ).json( {onePost, commentsOnOnePost} );
-  } catch ( err ) {
-    console.log( err );
-    res.status( 400 ).json({ err: err.message });
+    res.status(200).json({ onePost, commentsOnOnePost });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ err: err.message });
   }
 });
 
@@ -47,23 +47,23 @@ router.post('/', async (req, res) => {
     console.log("User:", user);
     const newPost = await Post.create(req.body);
     console.log("newPost: ", newPost);
-    res.status(200).json({newPost, user});
-  } catch ( err ) {
-    console.log( err );
-    res.status( 400 ).json({ err: err.message });
+    res.status(200).json({ newPost, user });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ err: err.message });
   }
 });
 
 // Update route for posts
-router.put( '/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     req.body.tag = req.body.tag.split(', ');
-    const updatePost = await Post.findByIdAndUpdate( req.params.id, req.body );
+    const updatePost = await Post.findByIdAndUpdate(req.params.id, req.body);
     console.log(updatePost);
-    res.status( 200 ).json( updatePost );
-  } catch ( err ) {
-    console.log( err );
-    res.status( 400 ).json({ err: err.message });
+    res.status(200).json(updatePost);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ err: err.message });
   }
 });
 
@@ -72,12 +72,12 @@ router.put( '/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const deletePost = await Post.findByIdAndRemove(req.params.id);
-    res.status( 200 ).json( deletePost );
+    res.status(200).json(deletePost);
   } catch (err) {
-    console.log( err );
-    res.status( 400 ).json({ err: err.message });
+    console.log(err);
+    res.status(400).json({ err: err.message });
   }
 });
 
 
-module.exports    = router;
+module.exports = router;
